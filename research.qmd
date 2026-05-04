@@ -1,0 +1,25 @@
+---
+title: "Research"
+---
+
+## Causal Atoms
+
+### Research Question
+
+TODO: Add the core research question.
+
+### Motivation
+
+TODO: Add brief motivation.
+
+### Methods
+
+TODO: Add methods overview.
+
+### Current Status
+
+TODO: Add current project status.
+
+### Future Directions
+
+TODO: Add possible next steps.

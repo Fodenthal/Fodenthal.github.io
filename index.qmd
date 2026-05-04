@@ -1,0 +1,22 @@
+---
+title: "Felix Odenthal"
+subtitle: "Mechanistic interpretability research notes"
+---
+
+I'm an undergraduate at UChicago working on mechanistic interpretability.
+
+## Current Work
+
+Placeholder for current research projects and active questions.
+
+See the [Research](research.qmd) page for project templates and current directions.
+
+## Research Notes
+
+Placeholder for informal notes, working drafts, and future writeups.
+
+See the [Notes](notes.qmd) page for draft notes.
+
+## Contact
+
+[email/contact link here]

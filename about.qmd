@@ -1,0 +1,17 @@
+---
+title: "About"
+---
+
+Short placeholder bio: I'm an undergraduate at UChicago working on mechanistic interpretability.
+
+## Education
+
+TODO: Add education details.
+
+## Research Interests
+
+TODO: Add research interests.
+
+## Contact
+
+[email/contact link here]

@@ -1,0 +1,32 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - styles.css
+  render:
+    - index.qmd
+    - research.qmd
+    - notes.qmd
+    - about.qmd
+    - notes/*.qmd
+
+website:
+  title: "Felix Odenthal"
+  description: "Mechanistic interpretability research notes"
+  search: false
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: research.qmd
+        text: Research
+      - href: notes.qmd
+        text: Notes
+      - href: about.qmd
+        text: About
+
+format:
+  html:
+    theme: litera
+    css: styles.css
+    toc: true

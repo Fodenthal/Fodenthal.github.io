@@ -1,0 +1,7 @@
+---
+title: "Notes"
+---
+
+Working notes and draft writeups will live here.
+
+- [Causal Atoms: Pilot Notes](notes/causal-atoms-pilot.qmd)
