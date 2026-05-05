@@ -1,0 +1,23 @@
+/* Mild site-level styling for readability. */
+
+body {
+  line-height: 1.65;
+}
+
+.navbar-title {
+  font-weight: 600;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: 0;
+}
+
+main.content {
+  max-width: 820px;
+}
+
+a {
+  text-underline-offset: 0.18em;
+}
