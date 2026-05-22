@@ -129,6 +129,7 @@ ul.task-list li input[type="checkbox"] {
 
 <p>Working notes and draft writeups will live here.</p>
 <ul>
+<li><a href="./notes/residual-geometry.html">The Residual Stream Has a Geometry of Time</a></li>
 <li><a href="./notes/causal-atoms-pilot.html">Causal Atoms: Pilot Notes</a></li>
 </ul>
 
@@ -208,7 +209,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/Fodenthal\.github\.io\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
