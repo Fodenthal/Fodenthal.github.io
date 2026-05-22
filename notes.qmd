@@ -4,4 +4,5 @@ title: "Notes"
 
 Working notes and draft writeups will live here.
 
+- [The Residual Stream Has a Geometry of Time](notes/residual-geometry.qmd)
 - [Causal Atoms: Pilot Notes](notes/causal-atoms-pilot.qmd)

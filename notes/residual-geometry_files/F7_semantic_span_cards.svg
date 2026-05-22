@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="730.5028pt" height="291.6pt" viewBox="0 0 730.5028 291.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-05-21T21:53:09.029071</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 291.6 
+L 730.5028 291.6 
+L 730.5028 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 19.2528 104.22 
+L 597.7872 104.22 
+L 597.7872 57.096 
+L 19.2528 57.096 
+z
+" clip-path="url(#p1bdaabeb4b)" style="fill: #f8fafc; stroke: #cbd5e1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 19.2528 167.976 
+L 597.7872 167.976 
+L 597.7872 120.852 
+L 19.2528 120.852 
+z
+" clip-path="url(#p1bdaabeb4b)" style="fill: #f8fafc; stroke: #cbd5e1; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 19.2528 231.732 
+L 597.7872 231.732 
+L 597.7872 184.608 
+L 19.2528 184.608 
+z
+" clip-path="url(#p1bdaabeb4b)" style="fill: #f8fafc; stroke: #cbd5e1; stroke-linejoin: miter"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #111827; font: 700 16px 'DejaVu Sans'; text-anchor: start" x="19.2528" y="23.832" transform="rotate(-0 19.2528 23.832)">Persistent directions look like durable document-state axes</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #6b7280; font: 10px 'DejaVu Sans'; text-anchor: start" x="19.2528" y="39.078" transform="rotate(-0 19.2528 39.078)">These are qualitative validation-set dossiers, not validated semantic labels.</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #6b7280; font: 700 10px 'DejaVu Sans'; text-anchor: start" x="34.3188" y="72.342" transform="rotate(-0 34.3188 72.342)">rank 1</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #b45309; font: 700 10px 'DejaVu Sans'; text-anchor: start" x="88.5564" y="72.342" transform="rotate(-0 88.5564 72.342)">tau = 492</text>
+   </g>
+   <g id="text_5">
+    <text style="fill: #111827; font: 700 12px 'DejaVu Sans'; text-anchor: start" x="169.9128" y="72.342" transform="rotate(-0 169.9128 72.342)">technical / instructional state</text>
+   </g>
+   <g id="text_6">
+    <text style="fill: #374151; font: 10.5px 'DejaVu Sans'; text-anchor: start" x="34.3188" y="86.202" transform="rotate(-0 34.3188 86.202)">device setup, networking, configuration, software support pages</text>
+   </g>
+   <g id="text_7">
+    <text style="fill: #6b7280; font: 9.5px 'DejaVu Sans'; text-anchor: start" x="34.3188" y="97.29" transform="rotate(-0 34.3188 97.29)">q95 high spans length&gt;=8: 534</text>
+   </g>
+   <g id="text_8">
+    <text style="fill: #6b7280; font: 700 10px 'DejaVu Sans'; text-anchor: start" x="34.3188" y="136.098" transform="rotate(-0 34.3188 136.098)">rank 3</text>
+   </g>
+   <g id="text_9">
+    <text style="fill: #b45309; font: 700 10px 'DejaVu Sans'; text-anchor: start" x="88.5564" y="136.098" transform="rotate(-0 88.5564 136.098)">tau = 50</text>
+   </g>
+   <g id="text_10">
+    <text style="fill: #111827; font: 700 12px 'DejaVu Sans'; text-anchor: start" x="169.9128" y="136.098" transform="rotate(-0 169.9128 136.098)">SEO / catalog-template state</text>
+   </g>
+   <g id="text_11">
+    <text style="fill: #374151; font: 10.5px 'DejaVu Sans'; text-anchor: start" x="34.3188" y="149.958" transform="rotate(-0 34.3188 149.958)">repetitive product pages, grinder/crusher listings, furniture catalog text</text>
+   </g>
+   <g id="text_12">
+    <text style="fill: #6b7280; font: 9.5px 'DejaVu Sans'; text-anchor: start" x="34.3188" y="161.046" transform="rotate(-0 34.3188 161.046)">q95 high spans length&gt;=8: 608</text>
+   </g>
+   <g id="text_13">
+    <text style="fill: #6b7280; font: 700 10px 'DejaVu Sans'; text-anchor: start" x="34.3188" y="199.854" transform="rotate(-0 34.3188 199.854)">rank 29</text>
+   </g>
+   <g id="text_14">
+    <text style="fill: #b45309; font: 700 10px 'DejaVu Sans'; text-anchor: start" x="88.5564" y="199.854" transform="rotate(-0 88.5564 199.854)">tau = 11</text>
+   </g>
+   <g id="text_15">
+    <text style="fill: #111827; font: 700 12px 'DejaVu Sans'; text-anchor: start" x="169.9128" y="199.854" transform="rotate(-0 169.9128 199.854)">recipe / food-menu state</text>
+   </g>
+   <g id="text_16">
+    <text style="fill: #374151; font: 10.5px 'DejaVu Sans'; text-anchor: start" x="34.3188" y="213.714" transform="rotate(-0 34.3188 213.714)">recipe and menu-like spans with persistent food/lifestyle formatting</text>
+   </g>
+   <g id="text_17">
+    <text style="fill: #6b7280; font: 9.5px 'DejaVu Sans'; text-anchor: start" x="34.3188" y="224.802" transform="rotate(-0 34.3188 224.802)">q95 high spans length&gt;=8: 295</text>
+   </g>
+   <g id="text_18">
+    <text style="fill: #111827; font: 10px 'DejaVu Sans'; text-anchor: start" x="19.2528" y="273.312" transform="rotate(-0 19.2528 273.312)">Safe interpretation: the subspace appears to track register, format, and source-template state that can persist across long document spans.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p1bdaabeb4b">
+   <rect x="7.2" y="7.2" width="602.64" height="277.2"/>
+  </clipPath>
+ </defs>
+</svg>

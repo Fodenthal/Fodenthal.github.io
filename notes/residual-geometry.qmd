@@ -1,0 +1,66 @@
+---
+title: "The Residual Stream Has a Geometry of Time"
+date: 2026-05-21
+categories:
+  - mechanistic interpretability
+  - residual stream
+  - transformers
+  - draft
+description: "A pilot experiment on Gemma-2-2B finds a compact set of residual-stream directions with long autocorrelation lifetimes, hidden as rotations inside the high-variance PCA span."
+format:
+  html:
+    toc: true
+    toc-depth: 3
+---
+
+{{< include ../sections/section_01_hook.md >}}
+
+{{< include ../sections/section_02_methods.md >}}
+
+{{< include ../sections/section_03_result1_heavy_tail.md >}}
+
+![Validation-split lifetime distributions for random, PCA, and time-lagged residual directions. Random and PCA probes are almost entirely short-lived, while time-lagged probes reveal a heavy upper tail. Dashed lines mark Q90; dotted lines mark Q95.](residual-geometry_files/F1_tau_histograms_by_probe_family.png){#fig-tau-histograms fig-align="center" width="100%"}
+
+{{< include ../sections/section_04_result2_permutation.md >}}
+
+![Document permutation destroys the time-lagged lifetime signal while preserving each document's token multiset. The top-decile time-lagged median lifetime drops from 17 to 1, a 94.1% collapse.](residual-geometry_files/F2_permutation_collapse.png){#fig-permutation-collapse fig-align="center" width="100%"}
+
+{{< include ../sections/section_05_result3_compact_subspace.md >}}
+
+![Cumulative lifetime-excess contribution by probe rank. The top 31 directions account for 80.3% of global lifetime excess, while remaining high-rank and nonredundant.](residual-geometry_files/F5_lifetime_excess_cumulative.png){#fig-lifetime-excess fig-align="center" width="82%"}
+
+{{< include ../sections/section_06_pca_containment.md >}}
+
+![Projection-collapse curves for held-out time-lagged probes. PCA and residual-first bases nearly fully collapse held-out persistence by k = 256, while random-control projections barely do.](residual-geometry_files/F3_projection_collapse_by_basis.png){#fig-projection-collapse fig-align="center" width="82%"}
+
+![Conceptual schematic of the PCA-containment result. Persistent directions are rotations inside the high-variance PCA span, not individual PCA axes and not a separate low-variance residual corner.](residual-geometry_files/F4_pca_containment_schematic.png){#fig-pca-schematic fig-align="center" width="76%"}
+
+{{< include ../sections/section_07_pca_vs_persistent.md >}}
+
+![PCA-vs-persistent stress test. Top PCA directions have higher raw head-subspace alignment than persistent directions, but negative M0 attention excess; persistent directions have positive attention-specific excess beyond residual PCA.](residual-geometry_files/F6_pca_vs_persistent_stress_test.png){#fig-pca-vs-persistent fig-align="center" width="100%"}
+
+{{< include ../sections/section_08_attention_alignment.md >}}
+
+{{< include ../sections/section_09_causal_routing.md >}}
+
+{{< include ../sections/section_10_semantics.md >}}
+
+![Qualitative semantic dossiers for three persistent directions. These are illustrative validation-set examples: they suggest durable register and source-template state, not validated semantic labels.](residual-geometry_files/F7_semantic_span_cards.png){#fig-semantic-spans fig-align="center" width="100%"}
+
+{{< include ../sections/section_11_synthesis.md >}}
+
+{{< include ../sections/section_12_open_questions.md >}}
+
+## Appendix figures
+
+The appendix figures are supporting diagnostics for the main narrative. They are included here to keep the post auditable without overloading the main argument.
+
+![Singular spectrum of the top-31 persistent directions. The participation-ratio effective rank is 28.2, indicating that the top-31 set does not collapse to one repeated direction.](residual-geometry_files/A1_top31_singular_spectrum.png){#fig-singular-spectrum fig-align="center" width="78%"}
+
+![Pairwise absolute cosine similarities among the top-31 persistent directions. The maximum pairwise absolute cosine is 0.237, with median 0.035.](residual-geometry_files/A2_top31_pairwise_abs_cosine.png){#fig-cosine-heatmap fig-align="center" width="70%"}
+
+![Persistent-minus-random M0 excess after removing increasing numbers of residual PCA components. Attention excess remains positive across the tested controls; MLP excess is weaker and emerges mainly after stronger PCA removal.](residual-geometry_files/A3_attention_alignment_vs_residual_pca_control.png){#fig-alignment-controls fig-align="center" width="82%"}
+
+![M0 block-output excess by layer after residual-PCA control. Attention excess is strongest in late layers; MLP excess is weaker and less consistent.](residual-geometry_files/A4_m0_attention_vs_mlp_by_layer.png){#fig-m0-by-layer fig-align="center" width="82%"}
+
+![Within-document autocorrelation profiles for the highest-ranked persistent directions. The dashed horizontal line marks the 1/e lifetime threshold.](residual-geometry_files/A5_top_persistent_decay_curves.png){#fig-top-decay-curves fig-align="center" width="82%"}

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="394.485417pt" height="299.232pt" viewBox="0 0 394.485417 299.232" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-05-21T21:53:08.425678</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.9.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 299.232 
+L 394.485417 299.232 
+L 394.485417 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 198.37875 270.78 
+C 243.46752 270.78 286.715641 259.583776 318.598217 239.657167 
+C 350.480792 219.730557 368.39475 192.700481 368.39475 164.52 
+C 368.39475 136.339519 350.480792 109.309443 318.598217 89.382833 
+C 286.715641 69.456224 243.46752 58.26 198.37875 58.26 
+C 153.28998 58.26 110.041859 69.456224 78.159283 89.382833 
+C 46.276708 109.309443 28.36275 136.339519 28.36275 164.52 
+C 28.36275 192.700481 46.276708 219.730557 78.159283 239.657167 
+C 110.041859 259.583776 153.28998 270.78 198.37875 270.78 
+z
+" clip-path="url(#p1d56016b17)" style="fill: #f8fafc; stroke: #cbd5e1; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 216.985899 221.786917 
+C 249.147376 211.33702 278.035365 195.279713 297.287622 177.151432 
+C 316.539879 159.023151 324.584542 140.303989 319.649869 125.116625 
+C 314.715195 109.929261 297.204078 99.513676 270.973139 96.163781 
+C 244.742199 92.813886 211.933077 96.803186 179.771601 107.253083 
+C 147.610124 117.70298 118.722135 133.760287 99.469878 151.888568 
+C 80.217621 170.016849 72.172958 188.736011 77.107631 203.923375 
+C 82.042305 219.110739 99.553422 229.526324 125.784361 232.876219 
+C 152.015301 236.226114 184.824423 232.236814 216.985899 221.786917 
+z
+" clip-path="url(#p1d56016b17)" style="fill: #eef2ff; opacity: 0.95; stroke: #4f46e5; stroke-width: 2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 203.816505 179.339076 
+C 222.396763 186.845987 240.889591 192.385492 255.22216 194.737579 
+C 269.554728 197.089666 278.556846 196.062298 280.245901 191.88174 
+C 281.934956 187.701182 276.173045 180.708758 264.229161 172.44447 
+C 252.285277 164.180181 235.134586 155.318769 216.554328 147.811858 
+C 197.97407 140.304946 179.481242 134.765441 165.148673 132.413354 
+C 150.816105 130.061267 141.813987 131.088636 140.124932 135.269194 
+C 138.435877 139.449751 144.197789 146.442175 156.141672 154.706464 
+C 168.085556 162.970753 185.236248 171.832164 203.816505 179.339076 
+z
+" clip-path="url(#p1d56016b17)" style="fill: #fef3c7; opacity: 0.95; stroke: #b45309; stroke-width: 2.2; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 152.498205 240.963266 
+Q 174.764999 216.469793 196.129308 192.969053 
+" clip-path="url(#p1d56016b17)" style="fill: none; stroke: #111827; stroke-width: 1.2; stroke-linecap: round"/>
+    <path d="M 191.124622 194.906351 
+L 196.129308 192.969053 
+L 194.676335 198.13518 
+" clip-path="url(#p1d56016b17)" style="fill: none; stroke: #111827; stroke-width: 1.2; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_1">
+    <path d="M 83.844916 201.734299 
+L 312.912584 127.305701 
+" clip-path="url(#p1d56016b17)" style="fill: none; stroke: #4f46e5; stroke-opacity: 0.55; stroke-width: 1.3; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 235.593049 279.053834 
+L 161.164451 49.986166 
+" clip-path="url(#p1d56016b17)" style="fill: none; stroke: #4f46e5; stroke-opacity: 0.55; stroke-width: 1.3; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 137.935542 134.384622 
+L 282.435291 192.766311 
+" clip-path="url(#p1d56016b17)" style="fill: none; stroke: #b45309; stroke-width: 1.6; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 180.994572 235.825341 
+L 239.376261 91.325592 
+" clip-path="url(#p1d56016b17)" style="fill: none; stroke: #b45309; stroke-width: 1.6; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="fill: #475569; font: 11px 'DejaVu Sans'; text-anchor: start" x="40.169417" y="55.898667" transform="rotate(-0 40.169417 55.898667)">full residual stream</text>
+   </g>
+   <g id="text_2">
+    <text style="fill: #4f46e5; font: 700 11px 'DejaVu Sans'" transform="translate(96.841417 90.80774)">top PCA span</text>
+    <text style="fill: #4f46e5; font: 700 11px 'DejaVu Sans'" transform="translate(96.841417 103.125333)">high variance</text>
+   </g>
+   <g id="text_3">
+    <text style="fill: #b45309; font: 700 11px 'DejaVu Sans'" transform="translate(219.63075 189.98374)">persistent subspace</text>
+    <text style="fill: #b45309; font: 700 11px 'DejaVu Sans'" transform="translate(219.63075 202.301333)">rotated inside PCA span</text>
+   </g>
+   <g id="text_4">
+    <text style="fill: #111827; font: 10px 'DejaVu Sans'" transform="translate(42.53075 259.582187)">Individual PCA axes are short-lived;</text>
+    <text style="fill: #111827; font: 10px 'DejaVu Sans'" transform="translate(42.53075 270.78)">the PCA span still contains the persistent rotations.</text>
+   </g>
+  </g>
+  <g id="text_5">
+   <text style="font: 12px 'DejaVu Sans'; text-anchor: middle" x="191.89875" y="16.318125" transform="rotate(-0 191.89875 16.318125)">The PCA result is a subspace result, not an axis-by-axis result</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p1d56016b17">
+   <rect x="9.472083" y="37.008" width="377.813333" height="255.024"/>
+  </clipPath>
+ </defs>
+</svg>
