@@ -5,7 +5,6 @@ categories:
   - mechanistic interpretability
   - residual stream
   - transformers
-  - draft
 description: "A pilot experiment on Gemma-2-2B finds a compact set of residual-stream directions with long autocorrelation lifetimes, hidden as rotations inside the high-variance PCA span."
 format:
   html:

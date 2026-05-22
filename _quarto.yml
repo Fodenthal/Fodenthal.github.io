@@ -8,7 +8,7 @@ project:
     - research.qmd
     - notes.qmd
     - about.qmd
-    - notes/*.qmd
+    - notes/residual-geometry.qmd
 
 website:
   title: "Felix Odenthal"
@@ -21,7 +21,7 @@ website:
       - href: research.qmd
         text: Research
       - href: notes.qmd
-        text: Notes
+        text: Writing
       - href: about.qmd
         text: About
 

@@ -1,22 +1,27 @@
 ---
 title: "Felix Odenthal"
-subtitle: "Mechanistic interpretability research notes"
+subtitle: "Mechanistic interpretability research"
 ---
 
-I'm an undergraduate at UChicago working on mechanistic interpretability.
+I'm an undergraduate at the University of Chicago working on mechanistic interpretability: how neural networks represent information, maintain context, and organize computation internally.
 
-## Current Work
+## Featured Work
 
-Placeholder for current research projects and active questions.
+### [The Residual Stream Has a Geometry of Time](notes/residual-geometry.qmd)
 
-See the [Research](research.qmd) page for project templates and current directions.
+In a pilot study on Gemma-2-2B, I found a compact set of residual-stream directions with long autocorrelation lifetimes. The surprising part is geometric: these persistent directions live inside the high-variance PCA span, but not on the PCA axes themselves.
 
-## Research Notes
+This post is the best entry point to the project. It includes the experimental setup, figures, evidence boundaries, and open questions.
 
-Placeholder for informal notes, working drafts, and future writeups.
+[Read the post](notes/residual-geometry.qmd)
 
-See the [Notes](notes.qmd) page for draft notes.
+## Research Interests
+
+- Mechanistic interpretability of transformer residual streams
+- Persistent state, context tracking, and long-timescale representations
+- Geometry of representation spaces: PCA, subspaces, and sparse features
+- Causal tests that connect geometric structure to model behavior
 
 ## Contact
 
-[email/contact link here]
+If you're interested in the residual-geometry project or related mechanistic interpretability work, the best starting point is the post above.

@@ -2,16 +2,21 @@
 title: "About"
 ---
 
-Short placeholder bio: I'm an undergraduate at UChicago working on mechanistic interpretability.
+I'm an undergraduate at the University of Chicago working on mechanistic interpretability.
 
-## Education
+My current work focuses on how transformer residual streams organize information across time: which directions are transient, which are persistent, and how persistent geometry relates to PCA, attention outputs, and semantic structure.
 
-TODO: Add education details.
+## Current Focus
 
-## Research Interests
+- Residual-stream geometry
+- Persistent state and context tracking in language models
+- Attention-output subspaces and causal follow-up tests
+- Sparse-feature interpretations of geometric directions
 
-TODO: Add research interests.
+## Featured Post
+
+[The Residual Stream Has a Geometry of Time](notes/residual-geometry.qmd)
 
 ## Contact
 
-[email/contact link here]
+For now, the best public reference for my current work is the featured post above.

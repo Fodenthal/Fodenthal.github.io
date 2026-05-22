@@ -2,24 +2,32 @@
 title: "Research"
 ---
 
-## Causal Atoms
+## Residual Stream Geometry
 
-### Research Question
+### State-lifetime geometry in transformer residual streams
 
-TODO: Add the core research question.
+Transformers process text one token at a time, but they do not have an explicit recurrent state. This project asks whether the residual stream nevertheless contains directions that behave like persistent state: directions whose scalar projections remain autocorrelated across many token positions.
 
-### Motivation
+The current pilot studies the layer-12 residual stream of Gemma-2-2B on C4 documents. It compares random directions, PCA directions, and time-lagged directions optimized for temporal stability.
 
-TODO: Add brief motivation.
+The main finding is that persistence is compact, sequential, and geometrically nontrivial:
 
-### Methods
+- Time-lagged directions reveal a heavy tail of residual-stream lifetimes.
+- The signal collapses under document-level token permutation.
+- Around 31 nonredundant directions account for most lifetime excess.
+- The persistent directions are rotations inside the high-variance PCA span, not low-variance hidden directions.
+- Raw attention alignment and high variance are not enough; persistent directions show attention-specific geometric excess beyond residual PCA.
 
-TODO: Add methods overview.
+The public writeup is here:
 
-### Current Status
+### [The Residual Stream Has a Geometry of Time](notes/residual-geometry.qmd)
 
-TODO: Add current project status.
+The post is written as a technical blog report: enough methods to audit the result, enough figures to understand the geometry, and explicit boundaries around what is not yet established causally.
 
-### Future Directions
+## Next Questions
 
-TODO: Add possible next steps.
+- Validate the qualitative register/template interpretation on held-out data with predefined labels.
+- Test whether the same persistent subspace appears across layers.
+- Run prospectively locked causal routing and ablation tests.
+- Replicate the analysis across model families.
+- Connect persistent directions to sparse autoencoder features.
