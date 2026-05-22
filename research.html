@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./notes.html"> 
-<span class="menu-text">Notes</span></a>
+<span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
@@ -107,14 +107,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#causal-atoms" id="toc-causal-atoms" class="nav-link active" data-scroll-target="#causal-atoms">Causal Atoms</a>
+  <li><a href="#residual-stream-geometry" id="toc-residual-stream-geometry" class="nav-link active" data-scroll-target="#residual-stream-geometry">Residual Stream Geometry</a>
   <ul class="collapse">
-  <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question">Research Question</a></li>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
-  <li><a href="#current-status" id="toc-current-status" class="nav-link" data-scroll-target="#current-status">Current Status</a></li>
-  <li><a href="#future-directions" id="toc-future-directions" class="nav-link" data-scroll-target="#future-directions">Future Directions</a></li>
+  <li><a href="#state-lifetime-geometry-in-transformer-residual-streams" id="toc-state-lifetime-geometry-in-transformer-residual-streams" class="nav-link" data-scroll-target="#state-lifetime-geometry-in-transformer-residual-streams">State-lifetime geometry in transformer residual streams</a></li>
+  <li><a href="#the-residual-stream-has-a-geometry-of-time" id="toc-the-residual-stream-has-a-geometry-of-time" class="nav-link" data-scroll-target="#the-residual-stream-has-a-geometry-of-time">The Residual Stream Has a Geometry of Time</a></li>
   </ul></li>
+  <li><a href="#next-questions" id="toc-next-questions" class="nav-link" data-scroll-target="#next-questions">Next Questions</a></li>
   </ul>
 </nav>
     </div>
@@ -140,30 +138,38 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="causal-atoms" class="level2">
-<h2 class="anchored" data-anchor-id="causal-atoms">Causal Atoms</h2>
-<section id="research-question" class="level3">
-<h3 class="anchored" data-anchor-id="research-question">Research Question</h3>
-<p>TODO: Add the core research question.</p>
+<section id="residual-stream-geometry" class="level2">
+<h2 class="anchored" data-anchor-id="residual-stream-geometry">Residual Stream Geometry</h2>
+<section id="state-lifetime-geometry-in-transformer-residual-streams" class="level3">
+<h3 class="anchored" data-anchor-id="state-lifetime-geometry-in-transformer-residual-streams">State-lifetime geometry in transformer residual streams</h3>
+<p>Transformers process text one token at a time, but they do not have an explicit recurrent state. This project asks whether the residual stream nevertheless contains directions that behave like persistent state: directions whose scalar projections remain autocorrelated across many token positions.</p>
+<p>The current pilot studies the layer-12 residual stream of Gemma-2-2B on C4 documents. It compares random directions, PCA directions, and time-lagged directions optimized for temporal stability.</p>
+<p>The main finding is that persistence is compact, sequential, and geometrically nontrivial:</p>
+<ul>
+<li>Time-lagged directions reveal a heavy tail of residual-stream lifetimes.</li>
+<li>The signal collapses under document-level token permutation.</li>
+<li>Around 31 nonredundant directions account for most lifetime excess.</li>
+<li>The persistent directions are rotations inside the high-variance PCA span, not low-variance hidden directions.</li>
+<li>Raw attention alignment and high variance are not enough; persistent directions show attention-specific geometric excess beyond residual PCA.</li>
+</ul>
+<p>The public writeup is here:</p>
 </section>
-<section id="motivation" class="level3">
-<h3 class="anchored" data-anchor-id="motivation">Motivation</h3>
-<p>TODO: Add brief motivation.</p>
+<section id="the-residual-stream-has-a-geometry-of-time" class="level3">
+<h3 class="anchored" data-anchor-id="the-residual-stream-has-a-geometry-of-time"><a href="./notes/residual-geometry.html">The Residual Stream Has a Geometry of Time</a></h3>
+<p>The post is written as a technical blog report: enough methods to audit the result, enough figures to understand the geometry, and explicit boundaries around what is not yet established causally.</p>
 </section>
-<section id="methods" class="level3">
-<h3 class="anchored" data-anchor-id="methods">Methods</h3>
-<p>TODO: Add methods overview.</p>
 </section>
-<section id="current-status" class="level3">
-<h3 class="anchored" data-anchor-id="current-status">Current Status</h3>
-<p>TODO: Add current project status.</p>
-</section>
-<section id="future-directions" class="level3">
-<h3 class="anchored" data-anchor-id="future-directions">Future Directions</h3>
-<p>TODO: Add possible next steps.</p>
+<section id="next-questions" class="level2">
+<h2 class="anchored" data-anchor-id="next-questions">Next Questions</h2>
+<ul>
+<li>Validate the qualitative register/template interpretation on held-out data with predefined labels.</li>
+<li>Test whether the same persistent subspace appears across layers.</li>
+<li>Run prospectively locked causal routing and ablation tests.</li>
+<li>Replicate the analysis across model families.</li>
+<li>Connect persistent directions to sparse autoencoder features.</li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

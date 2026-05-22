@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./notes.html"> 
-<span class="menu-text">Notes</span></a>
+<span class="menu-text">Writing</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
@@ -107,8 +107,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#current-work" id="toc-current-work" class="nav-link active" data-scroll-target="#current-work">Current Work</a></li>
-  <li><a href="#research-notes" id="toc-research-notes" class="nav-link" data-scroll-target="#research-notes">Research Notes</a></li>
+  <li><a href="#featured-work" id="toc-featured-work" class="nav-link active" data-scroll-target="#featured-work">Featured Work</a>
+  <ul class="collapse">
+  <li><a href="#the-residual-stream-has-a-geometry-of-time" id="toc-the-residual-stream-has-a-geometry-of-time" class="nav-link" data-scroll-target="#the-residual-stream-has-a-geometry-of-time">The Residual Stream Has a Geometry of Time</a></li>
+  </ul></li>
+  <li><a href="#research-interests" id="toc-research-interests" class="nav-link" data-scroll-target="#research-interests">Research Interests</a></li>
   <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -119,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Felix Odenthal</h1>
-<p class="subtitle lead">Mechanistic interpretability research notes</p>
+<p class="subtitle lead">Mechanistic interpretability research</p>
 </div>
 
 
@@ -136,20 +139,28 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>I’m an undergraduate at UChicago working on mechanistic interpretability.</p>
-<section id="current-work" class="level2">
-<h2 class="anchored" data-anchor-id="current-work">Current Work</h2>
-<p>Placeholder for current research projects and active questions.</p>
-<p>See the <a href="./research.html">Research</a> page for project templates and current directions.</p>
+<p>I’m an undergraduate at the University of Chicago working on mechanistic interpretability: how neural networks represent information, maintain context, and organize computation internally.</p>
+<section id="featured-work" class="level2">
+<h2 class="anchored" data-anchor-id="featured-work">Featured Work</h2>
+<section id="the-residual-stream-has-a-geometry-of-time" class="level3">
+<h3 class="anchored" data-anchor-id="the-residual-stream-has-a-geometry-of-time"><a href="./notes/residual-geometry.html">The Residual Stream Has a Geometry of Time</a></h3>
+<p>In a pilot study on Gemma-2-2B, I found a compact set of residual-stream directions with long autocorrelation lifetimes. The surprising part is geometric: these persistent directions live inside the high-variance PCA span, but not on the PCA axes themselves.</p>
+<p>This post is the best entry point to the project. It includes the experimental setup, figures, evidence boundaries, and open questions.</p>
+<p><a href="./notes/residual-geometry.html">Read the post</a></p>
 </section>
-<section id="research-notes" class="level2">
-<h2 class="anchored" data-anchor-id="research-notes">Research Notes</h2>
-<p>Placeholder for informal notes, working drafts, and future writeups.</p>
-<p>See the <a href="./notes.html">Notes</a> page for draft notes.</p>
+</section>
+<section id="research-interests" class="level2">
+<h2 class="anchored" data-anchor-id="research-interests">Research Interests</h2>
+<ul>
+<li>Mechanistic interpretability of transformer residual streams</li>
+<li>Persistent state, context tracking, and long-timescale representations</li>
+<li>Geometry of representation spaces: PCA, subspaces, and sparse features</li>
+<li>Causal tests that connect geometric structure to model behavior</li>
+</ul>
 </section>
 <section id="contact" class="level2">
 <h2 class="anchored" data-anchor-id="contact">Contact</h2>
-<p>[email/contact link here]</p>
+<p>If you’re interested in the residual-geometry project or related mechanistic interpretability work, the best starting point is the post above.</p>
 
 
 </section>

@@ -98,136 +98,87 @@
     "text": "Appendix figures\nThe appendix figures are supporting diagnostics for the main narrative. They are included here to keep the post auditable without overloading the main argument.\n\n\n\n\n\n\nFigure 8: Singular spectrum of the top-31 persistent directions. The participation-ratio effective rank is 28.2, indicating that the top-31 set does not collapse to one repeated direction.\n\n\n\n\n\n\n\n\n\nFigure 9: Pairwise absolute cosine similarities among the top-31 persistent directions. The maximum pairwise absolute cosine is 0.237, with median 0.035.\n\n\n\n\n\n\n\n\n\nFigure 10: Persistent-minus-random M0 excess after removing increasing numbers of residual PCA components. Attention excess remains positive across the tested controls; MLP excess is weaker and emerges mainly after stronger PCA removal.\n\n\n\n\n\n\n\n\n\nFigure 11: M0 block-output excess by layer after residual-PCA control. Attention excess is strongest in late layers; MLP excess is weaker and less consistent.\n\n\n\n\n\n\n\n\n\nFigure 12: Within-document autocorrelation profiles for the highest-ranked persistent directions. The dashed horizontal line marks the 1/e lifetime threshold."
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "notes.html",
+    "href": "notes.html",
+    "title": "Writing",
     "section": "",
-    "text": "Short placeholder bio: I’m an undergraduate at UChicago working on mechanistic interpretability."
-  },
-  {
-    "objectID": "about.html#education",
-    "href": "about.html#education",
-    "title": "About",
-    "section": "Education",
-    "text": "Education\nTODO: Add education details."
-  },
-  {
-    "objectID": "about.html#research-interests",
-    "href": "about.html#research-interests",
-    "title": "About",
-    "section": "Research Interests",
-    "text": "Research Interests\nTODO: Add research interests."
-  },
-  {
-    "objectID": "about.html#contact",
-    "href": "about.html#contact",
-    "title": "About",
-    "section": "Contact",
-    "text": "Contact\n[email/contact link here]"
-  },
-  {
-    "objectID": "research.html",
-    "href": "research.html",
-    "title": "Research",
-    "section": "",
-    "text": "TODO: Add the core research question.\n\n\n\nTODO: Add brief motivation.\n\n\n\nTODO: Add methods overview.\n\n\n\nTODO: Add current project status.\n\n\n\nTODO: Add possible next steps."
-  },
-  {
-    "objectID": "research.html#causal-atoms",
-    "href": "research.html#causal-atoms",
-    "title": "Research",
-    "section": "",
-    "text": "TODO: Add the core research question.\n\n\n\nTODO: Add brief motivation.\n\n\n\nTODO: Add methods overview.\n\n\n\nTODO: Add current project status.\n\n\n\nTODO: Add possible next steps."
+    "text": "Technical writeups and research notes.\n\nThe Residual Stream Has a Geometry of Time"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Felix Odenthal",
     "section": "",
-    "text": "I’m an undergraduate at UChicago working on mechanistic interpretability."
+    "text": "I’m an undergraduate at the University of Chicago working on mechanistic interpretability: how neural networks represent information, maintain context, and organize computation internally."
   },
   {
-    "objectID": "index.html#current-work",
-    "href": "index.html#current-work",
+    "objectID": "index.html#featured-work",
+    "href": "index.html#featured-work",
     "title": "Felix Odenthal",
-    "section": "Current Work",
-    "text": "Current Work\nPlaceholder for current research projects and active questions.\nSee the Research page for project templates and current directions."
+    "section": "Featured Work",
+    "text": "Featured Work\n\nThe Residual Stream Has a Geometry of Time\nIn a pilot study on Gemma-2-2B, I found a compact set of residual-stream directions with long autocorrelation lifetimes. The surprising part is geometric: these persistent directions live inside the high-variance PCA span, but not on the PCA axes themselves.\nThis post is the best entry point to the project. It includes the experimental setup, figures, evidence boundaries, and open questions.\nRead the post"
   },
   {
-    "objectID": "index.html#research-notes",
-    "href": "index.html#research-notes",
+    "objectID": "index.html#research-interests",
+    "href": "index.html#research-interests",
     "title": "Felix Odenthal",
-    "section": "Research Notes",
-    "text": "Research Notes\nPlaceholder for informal notes, working drafts, and future writeups.\nSee the Notes page for draft notes."
+    "section": "Research Interests",
+    "text": "Research Interests\n\nMechanistic interpretability of transformer residual streams\nPersistent state, context tracking, and long-timescale representations\nGeometry of representation spaces: PCA, subspaces, and sparse features\nCausal tests that connect geometric structure to model behavior"
   },
   {
     "objectID": "index.html#contact",
     "href": "index.html#contact",
     "title": "Felix Odenthal",
     "section": "Contact",
-    "text": "Contact\n[email/contact link here]"
+    "text": "Contact\nIf you’re interested in the residual-geometry project or related mechanistic interpretability work, the best starting point is the post above."
   },
   {
-    "objectID": "notes.html",
-    "href": "notes.html",
-    "title": "Notes",
+    "objectID": "research.html",
+    "href": "research.html",
+    "title": "Research",
     "section": "",
-    "text": "Working notes and draft writeups will live here.\n\nThe Residual Stream Has a Geometry of Time\nCausal Atoms: Pilot Notes"
+    "text": "Transformers process text one token at a time, but they do not have an explicit recurrent state. This project asks whether the residual stream nevertheless contains directions that behave like persistent state: directions whose scalar projections remain autocorrelated across many token positions.\nThe current pilot studies the layer-12 residual stream of Gemma-2-2B on C4 documents. It compares random directions, PCA directions, and time-lagged directions optimized for temporal stability.\nThe main finding is that persistence is compact, sequential, and geometrically nontrivial:\n\nTime-lagged directions reveal a heavy tail of residual-stream lifetimes.\nThe signal collapses under document-level token permutation.\nAround 31 nonredundant directions account for most lifetime excess.\nThe persistent directions are rotations inside the high-variance PCA span, not low-variance hidden directions.\nRaw attention alignment and high variance are not enough; persistent directions show attention-specific geometric excess beyond residual PCA.\n\nThe public writeup is here:\n\n\n\nThe post is written as a technical blog report: enough methods to audit the result, enough figures to understand the geometry, and explicit boundaries around what is not yet established causally."
   },
   {
-    "objectID": "notes/causal-atoms-pilot.html",
-    "href": "notes/causal-atoms-pilot.html",
-    "title": "Causal Atoms: Pilot Notes",
+    "objectID": "research.html#residual-stream-geometry",
+    "href": "research.html#residual-stream-geometry",
+    "title": "Research",
     "section": "",
-    "text": "Draft / working note."
+    "text": "Transformers process text one token at a time, but they do not have an explicit recurrent state. This project asks whether the residual stream nevertheless contains directions that behave like persistent state: directions whose scalar projections remain autocorrelated across many token positions.\nThe current pilot studies the layer-12 residual stream of Gemma-2-2B on C4 documents. It compares random directions, PCA directions, and time-lagged directions optimized for temporal stability.\nThe main finding is that persistence is compact, sequential, and geometrically nontrivial:\n\nTime-lagged directions reveal a heavy tail of residual-stream lifetimes.\nThe signal collapses under document-level token permutation.\nAround 31 nonredundant directions account for most lifetime excess.\nThe persistent directions are rotations inside the high-variance PCA span, not low-variance hidden directions.\nRaw attention alignment and high variance are not enough; persistent directions show attention-specific geometric excess beyond residual PCA.\n\nThe public writeup is here:\n\n\n\nThe post is written as a technical blog report: enough methods to audit the result, enough figures to understand the geometry, and explicit boundaries around what is not yet established causally."
   },
   {
-    "objectID": "notes/causal-atoms-pilot.html#motivation",
-    "href": "notes/causal-atoms-pilot.html#motivation",
-    "title": "Causal Atoms: Pilot Notes",
-    "section": "Motivation",
-    "text": "Motivation\n\nTODO: Add motivation."
+    "objectID": "research.html#next-questions",
+    "href": "research.html#next-questions",
+    "title": "Research",
+    "section": "Next Questions",
+    "text": "Next Questions\n\nValidate the qualitative register/template interpretation on held-out data with predefined labels.\nTest whether the same persistent subspace appears across layers.\nRun prospectively locked causal routing and ablation tests.\nReplicate the analysis across model families.\nConnect persistent directions to sparse autoencoder features."
   },
   {
-    "objectID": "notes/causal-atoms-pilot.html#experimental-setup",
-    "href": "notes/causal-atoms-pilot.html#experimental-setup",
-    "title": "Causal Atoms: Pilot Notes",
-    "section": "Experimental Setup",
-    "text": "Experimental Setup\n\nTODO: Add experimental setup."
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I’m an undergraduate at the University of Chicago working on mechanistic interpretability.\nMy current work focuses on how transformer residual streams organize information across time: which directions are transient, which are persistent, and how persistent geometry relates to PCA, attention outputs, and semantic structure."
   },
   {
-    "objectID": "notes/causal-atoms-pilot.html#baselines",
-    "href": "notes/causal-atoms-pilot.html#baselines",
-    "title": "Causal Atoms: Pilot Notes",
-    "section": "Baselines",
-    "text": "Baselines\n\nTODO: Add baselines."
+    "objectID": "about.html#current-focus",
+    "href": "about.html#current-focus",
+    "title": "About",
+    "section": "Current Focus",
+    "text": "Current Focus\n\nResidual-stream geometry\nPersistent state and context tracking in language models\nAttention-output subspaces and causal follow-up tests\nSparse-feature interpretations of geometric directions"
   },
   {
-    "objectID": "notes/causal-atoms-pilot.html#pilot-diagnostics",
-    "href": "notes/causal-atoms-pilot.html#pilot-diagnostics",
-    "title": "Causal Atoms: Pilot Notes",
-    "section": "Pilot Diagnostics",
-    "text": "Pilot Diagnostics\n\nTODO: Add pilot diagnostics."
+    "objectID": "about.html#featured-post",
+    "href": "about.html#featured-post",
+    "title": "About",
+    "section": "Featured Post",
+    "text": "Featured Post\nThe Residual Stream Has a Geometry of Time"
   },
   {
-    "objectID": "notes/causal-atoms-pilot.html#current-interpretation",
-    "href": "notes/causal-atoms-pilot.html#current-interpretation",
-    "title": "Causal Atoms: Pilot Notes",
-    "section": "Current Interpretation",
-    "text": "Current Interpretation\n\nTODO: Add current interpretation."
-  },
-  {
-    "objectID": "notes/causal-atoms-pilot.html#limitations",
-    "href": "notes/causal-atoms-pilot.html#limitations",
-    "title": "Causal Atoms: Pilot Notes",
-    "section": "Limitations",
-    "text": "Limitations\n\nTODO: Add limitations."
-  },
-  {
-    "objectID": "notes/causal-atoms-pilot.html#next-steps",
-    "href": "notes/causal-atoms-pilot.html#next-steps",
-    "title": "Causal Atoms: Pilot Notes",
-    "section": "Next Steps",
-    "text": "Next Steps\n\nTODO: Add next steps."
+    "objectID": "about.html#contact",
+    "href": "about.html#contact",
+    "title": "About",
+    "section": "Contact",
+    "text": "Contact\nFor now, the best public reference for my current work is the featured post above."
   }
 ]
