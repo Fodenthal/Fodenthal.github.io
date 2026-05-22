@@ -4,7 +4,7 @@ The geometric results tell us that the persistent directions exist, where they l
 the residual stream, and something about their relationship to attention-head geometry.
 They do not tell us what information those directions carry. As a first pass, we
 collected the highest-activating token windows for each of the top-31 directions from
-the validation split and read them — a qualitative exercise we call a semantic dossier.
+the validation split and read them. We call this qualitative exercise a semantic dossier.
 These are hypothesis-generating observations, not validated labels.
 
 The clearest pattern is what the directions are not. They do not look like clean
@@ -16,8 +16,8 @@ remain constant, not because a particular word or concept keeps recurring
 (@fig-semantic-spans).
 
 Several directions have recognizable tentative patterns. The highest-lifetime direction
-(rank 1, $\tau$ = 492) activates consistently on technical and instructional prose —
-device configuration, software documentation, networking setup — and on the opposite
+(rank 1, $\tau$ = 492) activates consistently on technical and instructional prose,
+including device configuration, software documentation, and networking setup. On the opposite
 end of its range, narrative, historical, and devotional text. Rank 3 activates on
 SEO-style product and catalog repetition; rank 5 on transactional and policy text
 (refund policies, supplier codes, terms of service); rank 9 on religious and scriptural
@@ -26,7 +26,7 @@ including GDPR-style disclosures. Others are harder to label cleanly from the sa
 windows alone.
 
 The span structure is consistent with the lifetime results. High-activation windows
-for these directions tend to be contiguous and long — the direction stays elevated
+for these directions tend to be contiguous and long: the direction stays elevated
 across entire sections or documents rather than spiking at individual tokens and
 returning to baseline. A direction that activates on legal boilerplate stays activated
 for the entire clause structure of a legal document, not just at the word "hereinafter."
@@ -41,7 +41,7 @@ kind of document-register state the time-lagged directions appear to track, and 
 not be interpreted alongside them.
 
 These observations are grounded in the validation split only, and the labeling method
-is coarse — keyword and density checks on small samples of top-activated windows.
+is coarse, based on keyword and density checks on small samples of top-activated windows.
 The labels are noisy, overlapping, and in several cases not stable enough across
 samples to report with confidence. The honest summary is that the persistent subspace
 appears to track durable document register and source-template state rather than

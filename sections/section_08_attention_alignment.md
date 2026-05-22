@@ -1,6 +1,6 @@
 ## Attention alignment is robust and concentrated in late layers
 
-Section 7 established that the persistent directions have positive M0 excess — their
+Section 7 established that the persistent directions have positive M0 excess, meaning their
 attention alignment is not fully explained by shared residual anisotropy. Here we
 report how robust that excess is and where in the network it comes from.
 
@@ -16,8 +16,8 @@ persistent directions is not a residual-anisotropy artifact at any tested contro
 strength.
 
 The signal is concentrated in the latter portion of the network. Breaking down M0
-excess by layer, the attention excess is positive and robust in layers 10, 11, and 12
-— the last three layers before the hook point — and weakest or absent in earlier
+excess by layer, the attention excess is positive and robust in layers 10, 11, and 12,
+which are the last three layers before the hook point, and weakest or absent in earlier
 layers (see appendix, @fig-m0-by-layer). Layer 11 shows strong attention excess at
 every control setting; layer 12 shows the strongest excess after residual-PCA control
 is applied. This late-layer concentration is consistent with a picture in which
@@ -33,6 +33,6 @@ more robust geometric signal at every control level.
 What all of this establishes is geometric in nature. The persistent directions point
 in similar directions to where late attention heads write into the residual stream,
 and that similarity is not explained by shared high-variance geometry. This does not
-mean those heads create, maintain, or route the persistent signal — that is a causal
+mean those heads create, maintain, or route the persistent signal. That is a causal
 question, and the geometric alignment result does not answer it. We address what we
 were and were not able to establish causally in the next section.
