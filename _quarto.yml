@@ -5,7 +5,6 @@ project:
     - styles.css
   render:
     - index.qmd
-    - research.qmd
     - notes.qmd
     - about.qmd
     - notes/residual-geometry.qmd
@@ -18,10 +17,8 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: research.qmd
-        text: Research
       - href: notes.qmd
-        text: Writing
+        text: Research
       - href: about.qmd
         text: About
 
