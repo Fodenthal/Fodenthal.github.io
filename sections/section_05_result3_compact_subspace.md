@@ -1,7 +1,7 @@
 ## The persistent signal concentrates in roughly 31 nonredundant directions
 
 The heavy upper tail of the time-lagged lifetime distribution is not spread evenly
-across all 256 time-lagged probes. It concentrates. We measured how many directions
+across all 256 time-lagged probes. It concentrates. I measured how many directions
 are needed to account for 80% of the total lifetime excess, the cumulative sum of
 $\tau$ values above the random baseline, across all 1,024 probes in the experiment
 (@fig-lifetime-excess). That number is 31.
@@ -12,7 +12,7 @@ for 64%, and the top 10 account for 75%. There is a dominant lead direction, and
 signal falls off from there. But it does not collapse to one direction repeated in
 slightly different guises.
 
-We checked this directly. Within the top-31 set, the median pairwise absolute cosine
+I checked this directly. Within the top-31 set, the median pairwise absolute cosine
 similarity is 0.035 and the maximum is 0.237, well below the 0.95 deduplication
 threshold used throughout the experiment, and close to what you would expect from
 near-orthogonal directions in a high-dimensional space. The participation-ratio
@@ -26,9 +26,9 @@ high-variance axes are not, in general, the persistent ones, even when selected 
 the same pool of candidate directions.
 
 Finally, the subspace generalizes. The 31 directions were selected using the
-validation split; we then evaluated projection collapse on a test split that was never
+validation split; I then evaluated projection collapse on a test split that was never
 used during direction fitting or selection. The held-out test results match the
-validation results closely, confirming that we have recovered a stable geometric
+validation results closely, confirming that the experiment recovered a stable geometric
 property of the residual stream rather than a validation-specific artifact. The
 question the remaining sections address is what those 31 directions have in common,
 and why they are persistent when the other 993 are not.

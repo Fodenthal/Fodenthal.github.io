@@ -11,13 +11,14 @@ Transformers have no explicit analogue of working memory. There is no designated
 register, no gated state, no mechanism whose purpose is to keep information online
 across token positions. What there is, at every layer, is a residual stream: a
 high-dimensional vector that accumulates the contributions of attention and MLP blocks
-as the model processes each token. The question we asked is whether that stream has
+as the model processes each token. The question I asked is whether that stream has
 any internal temporal structure, meaning whether some of its directions carry stable
 signals across many positions while others decay within one or two tokens. If so, those
 long-lived directions would be working-memory-like in a narrow geometric sense: not
 all of the model's active computation, but the part that stays available across time.
 
-What we found, in a pilot experiment on Gemma-2-2B, is that the answer is yes, and
+This was an independent experiment; I used Codex and Claude as coding and reasoning
+assistants. What I found, in a pilot experiment on Gemma-2-2B, is that the answer is yes, and
 that the geometry of the persistent directions is counterintuitive in two ways. The
 persistent directions do not live in a quiet, low-variance corner of the residual
 stream where the model might stash long-lived signals without disturbing its main
@@ -27,7 +28,7 @@ or by how strongly they align with attention-head outputs. The high-variance axe
 of the residual stream score better on both criteria, and have no persistence at all.
 Finding the persistent subspace requires a different objective entirely.
 
-This post reports the experiment: how we measured persistence, what the distribution
+This post reports the experiment: how I measured persistence, what the distribution
 looks like across direction families, where the persistent directions live in the
 residual stream, and what a first qualitative look at their activations suggests they
-might be tracking. We also report, honestly, what we were not able to establish.
+might be tracking. I also report, honestly, what I was not able to establish.

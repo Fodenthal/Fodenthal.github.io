@@ -21,11 +21,11 @@ The post uses a working memory / cognitive science analogy as a reader orientati
 - Model weights ≈ long-term memory: learned knowledge, not the subject of this experiment
 
 **Where it appears:**
-- Section 1 (hook): 2–3 sentences to motivate the question. Frame it as "transformers might have something like working memory — here is what we found when we looked for it." The analogy is the entry point, not the conclusion.
+- Section 1 (hook): 2–3 sentences to motivate the question. Frame it as "transformers might have something like working memory — here is what I found when I looked for it." The analogy is the entry point, not the conclusion.
 - Section 11 (synthesis): one sentence to close the loop. Nothing more.
 - Nowhere else.
 
-**Required hedge whenever the analogy is invoked:** "We found a working-memory-like state geometry, not the whole active workspace of the model." Use this line or something very close to it. It prevents the reader from concluding the model *has* working memory.
+**Required hedge whenever the analogy is invoked:** "I found a working-memory-like state geometry, not the whole active workspace of the model." Use this line or something very close to it. It prevents the reader from concluding the model *has* working memory.
 
 **Do not say:**
 - "The model has working memory"
@@ -88,7 +88,9 @@ with unnecessary hedging on the things that are actually supported.
 
 ## Voice
 
-- First person plural ("we measured," "we found") — this is collaborative research
+- First person singular for authorship and interpretation ("I measured," "I found").
+  This was an independent experiment using Codex and Claude as assistants, not a
+  multi-author human collaboration.
 - Active voice strongly preferred; passive only where natural
 - Short paragraphs (3–5 sentences typical). No paragraph should contain more than one
   main idea.
@@ -105,7 +107,7 @@ with unnecessary hedging on the things that are actually supported.
 |---|---|
 | "interestingly" | Signals the writer is surprised; show it structurally instead |
 | "fascinating," "remarkable," "exciting" | Editorializing |
-| "clearly," "obviously," "simply" | Condescending; if it were obvious we wouldn't need the experiment |
+| "clearly," "obviously," "simply" | Condescending; if it were obvious, the experiment would not be needed |
 | "the model knows," "the model thinks," "the model believes" | Anthropomorphizing; say what is geometrically or computationally observed |
 | "proves," "demonstrates conclusively" | Overclaiming; say "supports," "is consistent with," "provides evidence for" |
 | "persistent state" as a settled term for what the model is doing | This is a geometric property of the residual stream. Whether the model is actively *maintaining* state is an open question. Say "persistent residual directions" or "directions with long autocorrelation lifetimes." |
@@ -218,7 +220,7 @@ with unnecessary hedging on the things that are actually supported.
 6. Counterintuitive result 1: PCA-containment — `@fig-projection-collapse`, `@fig-pca-schematic`
 7. Counterintuitive result 2: PCA-vs-persistent stress test — `@fig-pca-vs-persistent`
 8. Result 4: attention alignment (M0)
-9. What we couldn't establish: causal routing
+9. What I couldn't establish: causal routing
 10. What the directions appear to encode (semantic dossiers) — `@fig-semantic-spans`
 11. Synthesis
 12. Open questions

@@ -1,19 +1,19 @@
-## What we could not establish: causal routing
+## What I could not establish: causal routing
 
 The geometric results in sections 6–8 raise a natural next question: do the attention
 heads whose outputs align with the persistent directions actually cause or maintain
 that persistence? Establishing this requires moving from geometry to intervention:
 measuring what happens to the persistent directions when specific heads are perturbed,
 or testing whether identified heads systematically route the persistent signal across
-token positions. We ran two tests toward this goal. Neither produced claim-level
+token positions. I ran two tests toward this goal. Neither produced claim-level
 evidence.
 
-The first was a locked transport test (M3): we asked whether the attention heads most
+The first was a locked transport test (M3): I asked whether the attention heads most
 geometrically aligned with the persistent directions route those directions' projections
 across positions more than matched control heads do. The locked result was negative at
 the group level: the aligned-head group did not beat same-layer random controls. This
 does not mean the aligned heads play no causal role; it means that geometric alignment,
-as identified by our Stage 06 procedure, does not cleanly predict transport specificity
+as identified by the Stage 06 procedure, does not cleanly predict transport specificity
 at the group level. Some random-control heads matched or exceeded the transport signal
 of the aligned-head candidates.
 

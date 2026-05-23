@@ -7,13 +7,13 @@ low-variance tail of the residual spectrum, where the model might quietly mainta
 long-lived signals without disturbing the high-variance structure. That inference is
 wrong, and correcting it is the most structurally important result in this experiment.
 
-To test where the persistent directions live, we measured *projection collapse*: the
+To test where the persistent directions live, I measured *projection collapse*: the
 degree to which a given basis removes the autocorrelation of a set of held-out probe
-directions. Concretely, we took 128 time-lagged probe directions that were fitted on a
+directions. Concretely, I took 128 time-lagged probe directions that were fitted on a
 separate training shard, directions the basis construction never saw, and projected
 them into the orthogonal complement of an increasing number $k$ of basis vectors. If
 the held-out probes lose their persistence after projection, they were living in the
-basis span. If they retain it, they were not. We evaluated three bases: the residual-
+basis span. If they retain it, they were not. I evaluated three bases: the residual-
 first basis (the leading directions fitted directly on the persistent probes), a PCA
 basis (the top-$k$ principal components of the residual stream), and a random-control
 basis (randomly sampled unit vectors).

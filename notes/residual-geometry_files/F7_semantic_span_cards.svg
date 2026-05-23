@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-05-21T21:53:09.029071</dc:date>
+    <dc:date>2026-05-22T15:58:06.295479</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -35,7 +35,7 @@ L 597.7872 104.22
 L 597.7872 57.096 
 L 19.2528 57.096 
 z
-" clip-path="url(#p1bdaabeb4b)" style="fill: #f8fafc; stroke: #cbd5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p2013dfb829)" style="fill: #f8fafc; stroke: #cbd5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 19.2528 167.976 
@@ -43,7 +43,7 @@ L 597.7872 167.976
 L 597.7872 120.852 
 L 19.2528 120.852 
 z
-" clip-path="url(#p1bdaabeb4b)" style="fill: #f8fafc; stroke: #cbd5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p2013dfb829)" style="fill: #f8fafc; stroke: #cbd5e1; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 19.2528 231.732 
@@ -51,7 +51,7 @@ L 597.7872 231.732
 L 597.7872 184.608 
 L 19.2528 184.608 
 z
-" clip-path="url(#p1bdaabeb4b)" style="fill: #f8fafc; stroke: #cbd5e1; stroke-linejoin: miter"/>
+" clip-path="url(#p2013dfb829)" style="fill: #f8fafc; stroke: #cbd5e1; stroke-linejoin: miter"/>
    </g>
    <g id="text_1">
     <text style="fill: #111827; font: 700 16px 'DejaVu Sans'; text-anchor: start" x="19.2528" y="23.832" transform="rotate(-0 19.2528 23.832)">Persistent directions look like durable document-state axes</text>
@@ -110,7 +110,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p1bdaabeb4b">
+  <clipPath id="p2013dfb829">
    <rect x="7.2" y="7.2" width="602.64" height="277.2"/>
   </clipPath>
  </defs>

@@ -1,10 +1,10 @@
 ## What the persistent directions appear to encode
 
-The geometric results tell us that the persistent directions exist, where they live in
+The geometric results show that the persistent directions exist, where they live in
 the residual stream, and something about their relationship to attention-head geometry.
-They do not tell us what information those directions carry. As a first pass, we
+They do not show what information those directions carry. As a first pass, I
 collected the highest-activating token windows for each of the top-31 directions from
-the validation split and read them. We call this qualitative exercise a semantic dossier.
+the validation split and read them. I call this qualitative exercise a semantic dossier.
 These are hypothesis-generating observations, not validated labels.
 
 The clearest pattern is what the directions are not. They do not look like clean

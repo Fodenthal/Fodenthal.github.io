@@ -7,10 +7,10 @@ fully contained there by definition, and they occupy a region of the residual st
 with high attention-head activity. If the persistent directions are inside the PCA span,
 and the top PCA directions are inside the PCA span, what property separates the two?
 
-To answer this, we ran a stress test comparing five direction groups head-to-head:
+To answer this, I ran a stress test comparing five direction groups head-to-head:
 the top-31 persistent directions, 31 random directions, 31 low-lifetime time-lagged
 directions, the top-31 PCA directions, and 31 directions sampled uniformly at random
-from within the top-128 PCA span (@fig-pca-vs-persistent). For each group we measured
+from within the top-128 PCA span (@fig-pca-vs-persistent). For each group I measured
 two quantities: raw attention alignment (how strongly each direction projects onto the
 leading principal components of each attention head's output), and M0 excess (how
 much that attention alignment exceeds what residual PCA alone would predict). The
@@ -19,7 +19,7 @@ contrast between these two metrics is where the result lives.
 On raw attention alignment, the top PCA directions score higher than the persistent
 directions. The median head-subspace projection norm is 0.208 for top PCA versus
 0.187 for persistent. By this metric, the high-variance axes of the residual stream
-are *more* attention-aligned than the directions we identified as persistent.
+are *more* attention-aligned than the directions identified as persistent.
 
 On M0 excess, the picture reverses completely. The persistent directions have a median
 M0 excess of +0.116: they project onto attention-head output subspaces substantially

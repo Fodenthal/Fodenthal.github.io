@@ -14,7 +14,7 @@ prospectively locked transport and ablation experiment with head sets declared b
 any validation diagnostics are examined is the required next step for claim levels
 7b and 8.
 
-**Cross-layer structure.** We measured persistence at a single hook point. Whether the
+**Cross-layer structure.** This experiment measured persistence at a single hook point. Whether the
 persistent subspace is stable across layers, meaning whether layers 8, 10, and 11 share the
 same ~31 directions, can be tested by computing subspace principal angles between
 layers. A stable subspace across the latter half of the network would suggest the

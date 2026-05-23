@@ -1,6 +1,6 @@
 ## A heavy tail that only time-lagged probes reveal
 
-We evaluated all three probe families on the validation split and measured the
+I evaluated all three probe families on the validation split and measured the
 distribution of lifetimes $\tau$ across directions (@fig-tau-histograms). The result
 is unambiguous: random and PCA probes are almost entirely short-lived, while time-lagged
 probes expose a pronounced heavy upper tail.
@@ -12,7 +12,7 @@ position. This is the baseline: generic directions are not temporally structured
 
 For PCA directions, the result is nearly identical. Q90 $\tau$ = 1.0, the same as
 random. The high-variance axes of the residual stream are not, in general, the
-persistent ones. We will return to this because it turns out to be the most structurally
+persistent ones. I return to this because it turns out to be the most structurally
 important finding in the experiment; for now the takeaway is simply that PCA and
 random probes are indistinguishable by lifetime.
 

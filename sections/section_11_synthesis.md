@@ -18,8 +18,8 @@ in layers 10–12.
 
 In the narrow sense suggested by section 1, this is a working-memory-like state
 geometry: a small set of directions that remain available across many token positions,
-embedded inside a much larger stream of fast-decaying computation. We found that
-geometry; we did not find evidence that specific attention heads causally maintain it,
+embedded inside a much larger stream of fast-decaying computation. I found that
+geometry; I did not find evidence that specific attention heads causally maintain it,
 which is the question a follow-up experiment will address.
 
 The scope of these results is deliberately narrow: one hook point (layer 12), one
