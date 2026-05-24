@@ -12,4 +12,4 @@
 
 **Finding 4: The subspace is low-dimensional.** Roughly 31 nonredundant directions account for 80% of total lifetime excess above the random baseline. These directions are genuinely distinct from one another: median pairwise cosine similarity is 0.035 and effective rank is 28/31.
 
-**Finding 5: The signal is not a corpus artifact.** Shuffling token order within documents collapses the top-decile lifetime of high-persistence probes from 17 tokens to 1 (94% reduction). Shuffling preserves the token multiset but destroys sequential order, which means document-level topic and lexical statistics survive intact. What the permutation control actually isolates is not semantics generally, just the subset of signal that requires knowing which token came when.
+**Finding 5: The signal is not a corpus artifact.** Shuffling token order within documents collapses the top-decile lifetime of high-persistence probes from 17 tokens to 1 (94% reduction). Shuffling preserves the token multiset but destroys sequential order, isolating signal tied to token ordering from signal tied to unigram statistics. The persistent directions survive only the former.
