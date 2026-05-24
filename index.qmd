@@ -3,7 +3,7 @@ title: "Felix Odenthal"
 subtitle: "Mechanistic interpretability research"
 ---
 
-I'm an undergraduate at the University of Chicago working on mechanistic interpretability: how neural networks represent information, maintain context, and organize computation internally.
+I'm an undergraduate at the University of Chicago working on mechanistic interpretability.
 
 ## Featured Work
 

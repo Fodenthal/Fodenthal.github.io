@@ -1,34 +1,15 @@
-## Introduction
+## TL;DR
 
-Not everything your brain is doing right now is in working memory. Early visual
-processing, syntactic parsing, word retrieval, and motor preparation are all active,
-but most of it is fast, local, and transient. Working memory is the smaller part: the
-information that stays available across time, that can guide ongoing reasoning and
-flexible response. The distinction is not between thinking and not thinking. It is
-between computation that persists and computation that does not.
+- The residual stream is commonly analogized to the transformer's "working memory": at each token position, a high-dimensional vector accumulates the attention and MLP deltas. This picture is organized along the depth axis, i.e. layer by layer.
+- There is a second axis of sequence-time. Within a layer, the model must also keep track of information that was relevant at position $t$ and is useful at position $t + k$. This experiment aims to characterize this state-tracking geometry in the ambient residual space.
+- I measured how long individual directions in Gemma-2-2B's residual stream carry signal across token positions, using random, PCA, and time-lagged probe families on 5,000 C4 documents.
 
-Transformers have no explicit analogue of working memory. There is no designated
-register, no gated state, no mechanism whose purpose is to keep information online
-across token positions. What there is, at every layer, is a residual stream: a
-high-dimensional vector that accumulates the contributions of attention and MLP blocks
-as the model processes each token. The question I asked is whether that stream has
-any internal temporal structure, meaning whether some of its directions carry stable
-signals across many positions while others decay within one or two tokens. If so, those
-long-lived directions would be working-memory-like in a narrow geometric sense: not
-all of the model's active computation, but the part that stays available across time.
+**Finding 1: There is a real distribution of timescales across residual directions.** Random and PCA directions have a 90th-percentile lifetime of 1 token, carrying essentially no signal from one position to the next. Time-lagged directions expose a pronounced heavy upper tail, with the top directions persisting across tens of tokens.
 
-This was an independent experiment; I used Codex and Claude as coding and reasoning
-assistants. What I found, in a pilot experiment on Gemma-2-2B, is that the answer is yes, and
-that the geometry of the persistent directions is counterintuitive in two ways. The
-persistent directions do not live in a quiet, low-variance corner of the residual
-stream where the model might stash long-lived signals without disturbing its main
-computation. They live inside the high-variance subspace that PCA finds, at angles
-the principal components do not occupy. And they cannot be identified by high variance
-or by how strongly they align with attention-head outputs. The high-variance axes
-of the residual stream score better on both criteria, and have no persistence at all.
-Finding the persistent subspace requires a different objective entirely.
+**Finding 2: The long-lived directions are hidden inside the high-variance PCA span.** They do not sit in a quiet low-variance corner of the residual stream. They live at rotations inside the high-variance subspace that the principal components themselves do not occupy. High variance and attention alignment are not sufficient to find them; the objective must directly target temporal stability.
 
-This post reports the experiment: how I measured persistence, what the distribution
-looks like across direction families, where the persistent directions live in the
-residual stream, and what a first qualitative look at their activations suggests they
-might be tracking. I also report, honestly, what I was not able to establish.
+**Finding 3: The persistent state occupies a subspace, not the full ambient space.** The long-lived directions form a proper geometric subspace of the residual stream. Any residual vector (from the C4 distribution) can be decomposed into its component within this subspace and its orthogonal component outside it. The former carries the long-timescale signal; the latter is fast-decaying transient computation. This is unlike the working-memory analogy in the human brain, where the relevant signals are distributed more broadly across cortex with no clean geometric boundary.
+
+**Finding 4: The subspace is low-dimensional.** Roughly 31 nonredundant directions account for 80% of total lifetime excess above the random baseline. Also, these directions are genuinely distinct from one another: median pairwise cosine similarity is 0.035 and effective rank is 28/31.
+
+**Finding 5: The signal is not a corpus artifact.** Shuffling token order within documents collapses the top-decile lifetime of high-persistence probes from 17 tokens to 1 (94% reduction). Shuffling preserves the token multiset but destroys its sequential order, so any persistence that survives it reflects document topic rather than temporal structure. Need to revise, maybe a less strong statement: These directions lose nearly all of their signal under permutation, pointingconfirming that what they track is tied to the order in which the residual stream evolved, not just to what words appeared.
