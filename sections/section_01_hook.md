@@ -1,7 +1,7 @@
 ## TL;DR
 
-- The residual stream is commonly analogized to the transformer's "working memory": at each token position, a high-dimensional vector accumulates the attention and MLP deltas. This picture is organized along the depth axis, i.e. layer by layer.
-- There is a second axis of sequence-time. Within a layer, the model must also keep track of information that was relevant at position $t$ and is useful at position $t + k$. This experiment aims to characterize this state-tracking geometry in the ambient residual space.
+- The residual stream is commonly analogized to the transformer's "working memory": at each token position, a high-dimensional vector accumulates the attention and MLP deltas. This picture considers state transformations along the depth axis, i.e. layer by layer.
+- There is a second axis of token-position. Within a layer, the model must also keep track of information that was relevant at position $t$ and is useful at position $t + k$. This experiment aims to discover the geometry of how the model tracks state within a layer.
 - I measured how long individual directions in Gemma-2-2B's residual stream carry signal across token positions, using random, PCA, and time-lagged probe families on 5,000 C4 documents.
 
 **Finding 1: There is a real distribution of timescales across residual directions.** Random and PCA directions have a 90th-percentile lifetime of 1 token, carrying essentially no signal from one position to the next. Time-lagged directions expose a pronounced heavy upper tail, with the top directions persisting across tens of tokens.
@@ -12,4 +12,4 @@
 
 **Finding 4: The subspace is low-dimensional.** Roughly 31 nonredundant directions account for 80% of total lifetime excess above the random baseline. Also, these directions are genuinely distinct from one another: median pairwise cosine similarity is 0.035 and effective rank is 28/31.
 
-**Finding 5: The signal is not a corpus artifact.** Shuffling token order within documents collapses the top-decile lifetime of high-persistence probes from 17 tokens to 1 (94% reduction). Shuffling preserves the token multiset but destroys its sequential order, so any persistence that survives it reflects document topic rather than temporal structure. Need to revise, maybe a less strong statement: These directions lose nearly all of their signal under permutation, pointingconfirming that what they track is tied to the order in which the residual stream evolved, not just to what words appeared.
+**Finding 5: The signal is not a corpus artifact.** Shuffling token order within documents collapses the top-decile lifetime of high-persistence probes from 17 tokens to 1 (94% reduction). Shuffling preserves the token multiset but destroys its sequential order, so any persistence that survives it reflects document topic rather than temporal structure. Need to revise, maybe a less strong statement:These directions lose nearly all of their signal under permutation, pointingconfirming that what they track is tied to the order in which the residual stream evolved, not just to what words appeared.
