@@ -2,7 +2,7 @@
 
 - The residual stream is commonly analogized to the transformer's "working memory": at each token position, a high-dimensional vector accumulates the attention and MLP deltas. This picture considers state transformations along the depth axis, i.e. layer by layer.
 - There is a second axis of token position. Within a layer, the model must also keep track of information at position $t$ which is useful at position $t + k$. This experiment aims to discover the geometry of how the model tracks state across tokens.
-- I estimated the distribution of timescales across residual directions in Gemma-2-2B using random, PCA, and time-lagged probe families on 5,000 C4 documents, then investigated the properties of the long-lived directions: where they live in the ambient space, how many there are, whether their long life is tied sequential context or just unigram statistics, and more.
+- I estimated the distribution of timescales across residual directions in Gemma-2-2B using random, PCA, and time-lagged probe families on 5,000 C4 documents, then investigated the properties of the long-lived directions: where they live in the ambient space, how many there are, what they appear to semantically encode, and whether their long life is tied to sequential context or just unigram statistics.
 
 **Finding 1: The timescale distribution is extremely heavy-tailed.** Random and PCA directions have a 90th-percentile lifetime of 1 token, carrying essentially no signal from one position to the next. Time-lagged directions have a 90th-percentile lifetime of 17 tokens against a baseline of 1.
 
@@ -12,4 +12,4 @@
 
 **Finding 4: The subspace is low-dimensional.** Roughly 31 nonredundant directions account for 80% of total lifetime excess above the random baseline. These directions are genuinely distinct from one another, as median pairwise cosine similarity is 0.035 and effective rank is 28/31.
 
-**Finding 5: The signal is not a corpus artifact.** Shuffling token order within documents collapses the top-decile lifetime of high-persistence probes from 17 tokens to 1 (94% reduction). Shuffling preserves the token multiset but destroys sequential order, isolating signal tied to token ordering from signal tied to unigram statistics. The persistent directions survive only the former.
+**Finding 5: The signal is not a corpus artifact.** Shuffling token order within documents collapses the top-decile lifetime of high-persistence probes from 17 tokens to 1 (94% reduction). Shuffling preserves the token multiset but destroys sequential order, isolating signal tied to token ordering from signal tied to unigram statistics. The persistent directions survive only the former.Y  
