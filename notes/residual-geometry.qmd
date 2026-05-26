@@ -48,6 +48,10 @@ format:
 
 {{< include ../sections/section_11_synthesis.md >}}
 
+{{< include ../sections/section_where_geometry_points.md >}}
+
+{{< include ../sections/section_latent_property.md >}}
+
 {{< include ../sections/section_12_open_questions.md >}}
 
 ## Appendix figures
