@@ -8,11 +8,15 @@
 
 **Finding 2: The long-lived directions are hidden inside the high-variance PCA span.** They don't sit in a quiet low-variance corner of the residual stream. Rather, they are rotations inside the high-variance subspace, but are not PCA components themselves.
 
-**Finding 3: The persistent state occupies a subspace, not the full ambient space.** The long-lived directions form a proper geometric subspace of the residual stream. This is very different from working memory in our brains, where the relevant signals are more diffuse across the cortex and have no clean geometric boundary.
+**Finding 3: Persistent signal is captured by a compact basis, not spread diffusely across the full ambient space.** Projecting out a small recovered basis removes persistence from independently fitted held-out probes, while matched random projection does not.
 
-**Finding 4: The subspace is low-dimensional.** Roughly 31 nonredundant directions account for 80% of total lifetime excess above the random baseline. These directions are genuinely distinct from one another, as median pairwise cosine similarity is 0.035 and effective rank is 28/31.
+**Finding 4: The selected slow-direction set is low-dimensional.** Roughly 31 nonredundant directions account for 80% of total lifetime excess above the random baseline: a small selected set carries most of the persistence above chance. These directions are genuinely distinct from one another, as median pairwise cosine similarity is 0.035 and effective rank is 28/31. A follow-up random-in-span diagnostic is still needed to determine whether generic rotations inside that span are slow.
 
 **Finding 5: State lifetime is not a corpus artifact.** Shuffling token order within documents collapses the top-decile lifetime of high-persistence probes from 17 tokens to 1 (94% reduction). Shuffling preserves the token multiset but destroys sequential order, isolating signal tied to token ordering from signal tied to surface statistics.
+
+**Finding 6: Persistent directions align preferentially with attention-head output geometry.** The alignment gap over random directions survives residual-PCA controls at k=16, 32, 64, and 128, and is strongest in late layers (L10-L12).
+
+**Finding 7: The alignment is attention-specific.** Persistent directions show meaningful excess overlap with attention block output beyond what residual PCA geometry predicts. MLP shows a weaker secondary signal in late layers but is not the primary write geometry.
 
 ---
 
@@ -34,6 +38,6 @@
 
 **Implication 1: Model components can be decomposed into a persistent component and a transient component.** If there exists a persistent residual subspace, every attention or MLP weight matrix that reads from or writes to the residual stream can be split into persistent and transient parts, e.g. PW versus (I−P)W.
 
-**Implication 2: Steering interventions become more targeted.** If a steering vector "makes the model more honest," we could test whether it works by modifying the model's persistent discourse representation (what kind of conversation the model takes itself to be in) or by adding a local logit-level bias that nudges each token slightly toward honest-sounding completions. Only the former is actually changing maintained state.
+**Implication 2: Steering interventions become more targeted.** If a steering vector "makes the model more honest," we could test whether it works by modifying the model's persistent discourse representation (what kind of conversation the model takes itself to be in) or by adding a local logit-level bias that nudges each token slightly toward honest-sounding completions. Only the former constitutes state change.
 
 **Implication 3: The KV cache may expose how persistent state is routed.** Keys and values that attract long-range attention may preferentially encode persistent directions. Testing this would connect residual-stream geometry to attention, the model's mechanism of moving information across positions.

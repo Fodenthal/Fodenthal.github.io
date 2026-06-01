@@ -1,9 +1,10 @@
 ## The picture that emerges
 
 Across the preceding sections, a consistent geometric picture has taken shape. The
-layer-12 residual stream of Gemma-2-2B contains a compact, generalizing, nonredundant
-subspace of roughly 31 directions with autocorrelation lifetimes an order of magnitude
-longer than chance. That signal requires sequential context to exist, since it collapses
+layer-12 residual stream of Gemma-2-2B contains a compact, nonredundant set of roughly
+31 selected directions with autocorrelation lifetimes an order of magnitude longer
+than chance. Related residual-first bases capture independently fitted held-out
+persistent probes. That signal requires sequential context to exist, since it collapses
 under document permutation, and the directions that carry it appear to track durable
 document register and source-template state rather than local lexical content.
 
@@ -21,6 +22,11 @@ geometry: a small set of directions that remain available across many token posi
 embedded inside a much larger stream of fast-decaying computation. I found that
 geometry; I did not find evidence that specific attention heads causally maintain it,
 which is the question a follow-up experiment will address.
+
+There is also a geometric follow-up between those two claims. The current result does
+not show that arbitrary rotations inside the headline span remain slow. Sampling
+random directions inside the recovered span will distinguish a broadly slow region
+from a thin or hierarchical set of preferred slow orientations.
 
 The scope of these results is deliberately narrow: one hook point (layer 12), one
 model (Gemma-2-2B), one corpus (C4). The pilot is clean and the findings are

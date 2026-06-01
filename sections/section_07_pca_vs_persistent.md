@@ -28,6 +28,16 @@ excess of −0.399: they project onto attention-head output subspaces *less* tha
 residual PCA predicts, despite their higher raw alignment. The gap between the two
 groups is 0.52, larger than either group's absolute value.
 
+For scale, in a 2048-dimensional residual stream the cosine between two random unit
+vectors has standard deviation $1/\sqrt{2048} = 0.0221$, so a raw cosine of 0.05 is
+already 2.26 random-cosine standard deviations from zero. M0 excess is not itself a
+raw cosine, so I standardize it against the empirical random-direction controls for
+the same max-over-layers statistic. Those random controls have mean 0.0206, median
+0.0193, and sample standard deviation 0.0166. On that scale, the persistent top-31
+median is 5.76 random-control standard deviations above the random mean, while the
+top-PCA median is 25.24 standard deviations below it. The persistent-minus-random
+median gap is 5.84 random-control standard deviations.
+
 What M0 excess measures is the part of attention alignment that cannot be explained
 by generic residual anisotropy. The residual stream is not isotropic: it has a
 dominant high-variance subspace, and attention heads write into that subspace too.

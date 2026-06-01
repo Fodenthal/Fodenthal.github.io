@@ -40,6 +40,11 @@ subspace of the residual stream, but at orientations that maximize autocorrelati
 rather than variance. PCA, which optimizes variance, does not find them. Time-lagged
 probes, which directly optimize lagged covariance, do.
 
+This does not imply that arbitrary rotations inside either the recovered span or the
+top-256 PCA span are persistent. Projection collapse establishes containment of
+held-out persistent probes. A separate random-in-span diagnostic is needed to
+distinguish a broadly slow region from a thin set of preferred slow orientations.
+
 What this rules out is a natural alternative model of how a transformer might maintain
 long-timescale information: by reserving a quiet, low-variance corner of the residual
 stream for stable signals that won't interfere with the high-variance computation

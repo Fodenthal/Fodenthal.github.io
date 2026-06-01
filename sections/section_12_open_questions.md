@@ -1,5 +1,12 @@
 ## Open questions
 
+**Fat or frame-dependent geometry.** Projection collapse shows that compact bases
+capture independently fitted held-out persistent probes. It does not show that a
+generic random direction inside the headline top-31 span remains slow. The next
+geometric diagnostic is to sample random directions inside that span, compare them
+against ambient-random and direct random-in-PCA-span controls, and measure how
+timescale changes as deeper prefixes and lower-ranked bands are mixed.
+
 **Semantic validation.** The dossier observations in section 10 are grounded in
 validation-split qualitative analysis only. The most direct next step is to predefine
 a label set, including technical prose, legal/regulatory, product catalog, biomedical citation,

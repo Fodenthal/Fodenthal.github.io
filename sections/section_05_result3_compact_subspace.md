@@ -25,10 +25,14 @@ absence of PCA directions from the top of the lifetime ranking confirms that
 high-variance axes are not, in general, the persistent ones, even when selected from
 the same pool of candidate directions.
 
-Finally, the subspace generalizes. The 31 directions were selected using the
-validation split; I then evaluated projection collapse on a test split that was never
-used during direction fitting or selection. The held-out test results match the
-validation results closely, confirming that the experiment recovered a stable geometric
-property of the residual stream rather than a validation-specific artifact. The
-question the remaining sections address is what those 31 directions have in common,
-and why they are persistent when the other 993 are not.
+Finally, a related projection-collapse result generalizes. A residual-first basis
+built from candidate directions fitted on one train shard removes persistence from
+independently fitted probes from a disjoint train shard. The same behavior appears on
+a test split that was never used during direction fitting or selection. This supports
+a reusable compact basis rather than a validation-specific collection of probes.
+
+There is a further geometric question the current pilot has not answered: is a generic
+random direction inside the headline top-31 span also slow, or are only the selected
+directions slow? Pairwise nonredundancy and high effective rank do not settle that.
+A random-in-span follow-up is needed before treating the recovered span as a uniformly
+slow region.

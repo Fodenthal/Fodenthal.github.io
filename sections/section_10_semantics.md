@@ -43,8 +43,8 @@ not be interpreted alongside them.
 These observations are grounded in the validation split only, and the labeling method
 is coarse, based on keyword and density checks on small samples of top-activated windows.
 The labels are noisy, overlapping, and in several cases not stable enough across
-samples to report with confidence. The honest summary is that the persistent subspace
-appears to track durable document register and source-template state rather than
+samples to report with confidence. The honest summary is that the selected persistent
+directions appear to track durable document register and source-template state rather than
 local lexical content, but that characterization has not been validated against
 held-out data with predeclared labels. That validation is the most direct next step
 for strengthening the semantic interpretation.

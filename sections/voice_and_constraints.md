@@ -6,7 +6,7 @@ Use this document as the system context at the top of every section-writing sess
 
 ## One-sentence claim
 
-> *The residual stream of a large language model contains a compact subspace of directions with autocorrelation lifetimes an order of magnitude longer than chance — and these directions live inside the high-variance PCA span, not outside it, which means neither PCA nor attention alignment alone can find them.*
+> *The residual stream of a large language model contains a compact set of directions with autocorrelation lifetimes an order of magnitude longer than chance. A recovered basis captures independently fitted held-out persistent probes, and the geometry lives inside the high-variance PCA span rather than outside it.*
 
 Every section should be traceable back to this claim. If a paragraph can't be connected to it, cut it or move it to the appendix.
 
@@ -37,7 +37,7 @@ The post uses a working memory / cognitive science analogy as a reader orientati
 - "The complement — fast-decaying directions — is not 'not thinking'; it is more like local, transient computation"
 - "The analogy is useful for orientation, not as a mechanistic claim"
 
-The key insight from cognitive science that makes the analogy apt: not all active computation is globally maintained state. In human cognition, early visual processing, syntactic parsing, motor preparation, and automatic associations are all happening "right now" but are not in working memory. The same distinction applies here: the fast-decaying majority of residual directions are not unimportant — they may carry most of the intelligence. The persistent subspace is the small part that stays available across many token positions.
+The key insight from cognitive science that makes the analogy apt: not all active computation is globally maintained state. In human cognition, early visual processing, syntactic parsing, motor preparation, and automatic associations are all happening "right now" but are not in working memory. The same distinction applies here: the fast-decaying majority of residual directions are not unimportant — they may carry most of the intelligence. The selected persistent directions are the small part shown to stay available across many token positions.
 
 ---
 
@@ -126,11 +126,11 @@ with unnecessary hedging on the things that are actually supported.
 - The signal collapses under document permutation (94.1% top-decile τ reduction)
 - The top persistent signal concentrates in ~31 nonredundant directions (effective rank
   28.2, pairwise abs-cosine max 0.237)
-- The persistent subspace is strongly contained in the top-256 PCA span (collapse 0.998)
+- Held-out persistent probes are strongly captured by the top-256 PCA span (collapse 0.998)
   even though individual PCA axes are not persistent (Q90 τ = 1.0)
 - Persistent directions have higher M0 attention-excess than top PCA directions, which
   have negative M0 excess despite higher raw attention alignment
-- Held-out validation and test projections confirm subspace generalization
+- Held-out validation and test projections confirm reusable-basis generalization
 
 ### Exploratory only — frame explicitly as hypothesis-generating
 
@@ -151,6 +151,8 @@ with unnecessary hedging on the things that are actually supported.
 - The directions encode validated semantic variables or discourse features
 - The result generalizes beyond layer 12, Gemma-2-2B, and C4 before the full-scale run
 - The persistent subspace is PCA-orthogonal or invisible to PCA (the opposite is true)
+- Generic random directions inside the headline top-31 span are slow, or every
+  direction inside that span is slow, before the random-in-span diagnostic is run
 
 ---
 
@@ -163,8 +165,8 @@ with unnecessary hedging on the things that are actually supported.
 | **τ (lifetime)** | The lag at which within-document autocorrelation of a probe's scalar projection drops below 1/e |
 | **lifetime excess** | τ minus the random-direction median τ (= 1.0); measures how much longer a direction persists than chance |
 | **time-lagged probe** | A direction optimized to maximize lagged covariance (generalized eigenproblem); distinct from PCA which maximizes variance |
-| **PCA-contained** | The persistent subspace is spanned within the top-k PCA directions as a subspace, even though individual PCA axes are not persistent |
-| **projection collapse** | The fraction by which a basis removes the autocorrelation of a held-out probe set; measures whether the probe directions live in the basis span |
+| **PCA-contained** | Held-out persistent probes are captured by the top-k PCA basis even though individual PCA axes are not persistent |
+| **projection collapse** | The fraction by which a basis removes the autocorrelation of a held-out probe set; measures whether the held-out probe directions live in the basis span, not whether generic rotations inside that span are slow |
 | **M0** | Block-output subspace comparison: tests whether persistent directions align with attention or MLP block outputs more than residual PCA predicts |
 | **M0 excess / ΔE** | Attention (or MLP) overlap minus residual-PCA baseline; the key comparative metric |
 | **document permutation control** | Shuffling token order within a document before recomputing τ; destroys sequential structure while preserving the token multiset |
