@@ -103,7 +103,6 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#the-residual-stream-has-a-geometry-of-time" id="toc-the-residual-stream-has-a-geometry-of-time" class="nav-link" data-scroll-target="#the-residual-stream-has-a-geometry-of-time">The Residual Stream Has a Geometry of Time</a></li>
   </ul></li>
-  <li><a href="#research-interests" id="toc-research-interests" class="nav-link" data-scroll-target="#research-interests">Research Interests</a></li>
   <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -136,23 +135,14 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="featured-work">Featured Work</h2>
 <section id="the-residual-stream-has-a-geometry-of-time" class="level3">
 <h3 class="anchored" data-anchor-id="the-residual-stream-has-a-geometry-of-time"><a href="./notes/residual-geometry.html">The Residual Stream Has a Geometry of Time</a></h3>
-<p>In a pilot study on Gemma-2-2B, I found a compact residual-stream subspace whose directions remain slow across tokens. The surprising part is geometric: it is functionally supported by broad high-variance residual geometry but distinct from the PCA axes.</p>
-<p>This post is the best entry point to the project. It includes the experimental setup, figures, evidence boundaries, and open questions.</p>
+<p>Preliminary writeup for a Gemma-2-2B pilot on residual-stream timescales. The main result is a low-dimensional slow subspace: generic directions inside it stay autocorrelated across tokens, while matched PCA directions do not.</p>
+<p>On C4, the subspace looks like durable web-document state rather than abstract reasoning variables. The post lays out the evidence, limitations, and the reasoning-corpus continuation I want feedback on.</p>
 <p><a href="./notes/residual-geometry.html">Read the post</a></p>
 </section>
 </section>
-<section id="research-interests" class="level2">
-<h2 class="anchored" data-anchor-id="research-interests">Research Interests</h2>
-<ul>
-<li>Mechanistic interpretability of transformer residual streams</li>
-<li>Persistent state, context tracking, and long-timescale representations</li>
-<li>Geometry of representation spaces: PCA, subspaces, and sparse features</li>
-<li>Causal tests that connect geometric structure to model behavior</li>
-</ul>
-</section>
 <section id="contact" class="level2">
 <h2 class="anchored" data-anchor-id="contact">Contact</h2>
-<p>If you’re interested in the residual-geometry project or related mechanistic interpretability work, the best starting point is the post above.</p>
+<p>Email: <a href="mailto:fx.odentha@gmail.com">fx.odentha@gmail.com</a></p>
 
 
 </section>
@@ -559,6 +549,19 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Contact: <a href="mailto:fx.odentha@gmail.com">fx.odentha@gmail.com</a></p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
 
 
 

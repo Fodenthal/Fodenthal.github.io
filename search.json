@@ -88,27 +88,20 @@
     "href": "index.html#featured-work",
     "title": "Felix Odenthal",
     "section": "Featured Work",
-    "text": "Featured Work\n\nThe Residual Stream Has a Geometry of Time\nIn a pilot study on Gemma-2-2B, I found a compact residual-stream subspace whose directions remain slow across tokens. The surprising part is geometric: it is functionally supported by broad high-variance residual geometry but distinct from the PCA axes.\nThis post is the best entry point to the project. It includes the experimental setup, figures, evidence boundaries, and open questions.\nRead the post"
-  },
-  {
-    "objectID": "index.html#research-interests",
-    "href": "index.html#research-interests",
-    "title": "Felix Odenthal",
-    "section": "Research Interests",
-    "text": "Research Interests\n\nMechanistic interpretability of transformer residual streams\nPersistent state, context tracking, and long-timescale representations\nGeometry of representation spaces: PCA, subspaces, and sparse features\nCausal tests that connect geometric structure to model behavior"
+    "text": "Featured Work\n\nThe Residual Stream Has a Geometry of Time\nPreliminary writeup for a Gemma-2-2B pilot on residual-stream timescales. The main result is a low-dimensional slow subspace: generic directions inside it stay autocorrelated across tokens, while matched PCA directions do not.\nOn C4, the subspace looks like durable web-document state rather than abstract reasoning variables. The post lays out the evidence, limitations, and the reasoning-corpus continuation I want feedback on.\nRead the post"
   },
   {
     "objectID": "index.html#contact",
     "href": "index.html#contact",
     "title": "Felix Odenthal",
     "section": "Contact",
-    "text": "Contact\nIf you’re interested in the residual-geometry project or related mechanistic interpretability work, the best starting point is the post above."
+    "text": "Contact\nEmail: fx.odentha@gmail.com"
   },
   {
     "objectID": "notes.html",
     "href": "notes.html",
     "title": "Research",
     "section": "",
-    "text": "Current research writeups.\n\nThe Residual Stream Has a Geometry of Time"
+    "text": "Research writeups.\n\nThe Residual Stream Has a Geometry of Time"
   }
 ]
