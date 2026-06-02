@@ -88,7 +88,7 @@
     "href": "index.html#featured-work",
     "title": "Felix Odenthal",
     "section": "Featured Work",
-    "text": "Featured Work\n\nThe Residual Stream Has a Geometry of Time\nPreliminary writeup for a Gemma-2-2B pilot on residual-stream timescales. The main result is a low-dimensional slow subspace: generic directions inside it stay autocorrelated across tokens, while matched PCA directions do not.\nOn C4, the subspace looks like durable web-document state rather than abstract reasoning variables. The post lays out the evidence, limitations, and the reasoning-corpus continuation I want feedback on.\nRead the post"
+    "text": "Featured Work\nThe Residual Stream Has a Geometry of Time"
   },
   {
     "objectID": "index.html#contact",
