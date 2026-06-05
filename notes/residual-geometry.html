@@ -182,8 +182,7 @@ window.Quarto = {
 
 <section id="preface" class="level2">
 <h2 class="anchored" data-anchor-id="preface">Preface</h2>
-<p>This is a preliminary writeup for an experiment on residual stream geometry. The research direction seems pretty underexplored, so I’m posting early to collect objections, research intuitions, and connections to problems other people are thinking about before I invest in the larger run.</p>
-<p><em>The case for skimming this post:</em> this experiment suggests transformers may keep track of context in a surprisingly compact way. Information that persists across many tokens is not diffuse across activation space; it concentrates in a low-dimensional subspace that can be projected out, compared to attention/MLP writes, and maybe even targeted by interventions.</p>
+<p>This is a preliminary writeup for an experiment on residual stream geometry, suggesting transformers may keep track of context in a surprisingly compact way. Information that persists across many tokens is not diffuse across activation space; it concentrates in a low-dimensional subspace that can be projected out, compared to attention/MLP writes, and maybe even targeted by interventions.</p>
 </section>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
@@ -754,7 +753,7 @@ window.Quarto = {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/Fodenthal\.github\.io\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

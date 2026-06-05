@@ -4,14 +4,14 @@
     "href": "notes/residual-geometry.html",
     "title": "The Residual Stream Has a Geometry of Time",
     "section": "",
-    "text": "This is a preliminary writeup for an experiment on residual stream geometry. The research direction seems pretty underexplored, so I’m posting early to collect objections, research intuitions, and connections to problems other people are thinking about before I invest in the larger run.\nThe case for skimming this post: this experiment suggests transformers may keep track of context in a surprisingly compact way. Information that persists across many tokens is not diffuse across activation space; it concentrates in a low-dimensional subspace that can be projected out, compared to attention/MLP writes, and maybe even targeted by interventions."
+    "text": "This is a preliminary writeup for an experiment on residual stream geometry, suggesting transformers may keep track of context in a surprisingly compact way. Information that persists across many tokens is not diffuse across activation space; it concentrates in a low-dimensional subspace that can be projected out, compared to attention/MLP writes, and maybe even targeted by interventions."
   },
   {
     "objectID": "notes/residual-geometry.html#preface",
     "href": "notes/residual-geometry.html#preface",
     "title": "The Residual Stream Has a Geometry of Time",
     "section": "",
-    "text": "This is a preliminary writeup for an experiment on residual stream geometry. The research direction seems pretty underexplored, so I’m posting early to collect objections, research intuitions, and connections to problems other people are thinking about before I invest in the larger run.\nThe case for skimming this post: this experiment suggests transformers may keep track of context in a surprisingly compact way. Information that persists across many tokens is not diffuse across activation space; it concentrates in a low-dimensional subspace that can be projected out, compared to attention/MLP writes, and maybe even targeted by interventions."
+    "text": "This is a preliminary writeup for an experiment on residual stream geometry, suggesting transformers may keep track of context in a surprisingly compact way. Information that persists across many tokens is not diffuse across activation space; it concentrates in a low-dimensional subspace that can be projected out, compared to attention/MLP writes, and maybe even targeted by interventions."
   },
   {
     "objectID": "notes/residual-geometry.html#summary",
