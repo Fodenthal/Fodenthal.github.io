@@ -6,9 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-06-05">
+<meta name="author" content="Felix Odenthal">
+<meta name="dcterms.date" content="2026-06-06">
+<meta name="description" content="An experiment on the sequence-time geometry of transformer residual streams">
 
-<title>The Residual Stream Has a Geometry of Time – Felix Odenthal</title>
+<title>Most of the residual stream forgets within a token A compact subspace does not – Felix Odenthal</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -30,6 +32,11 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/figures/F1_tau_histograms_by_probe_family.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -39,8 +46,20 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1b5cbb678aba238cc9ecc8dbef59e0a8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-445930127971cf0570f862e9caa14161.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -55,6 +74,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -100,6 +120,7 @@ window.Quarto = {
     <span class="navbar-title">Felix Odenthal</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -110,8 +131,24 @@ window.Quarto = {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../notes.html"> 
-<span class="menu-text">Research</span></a>
+    <a class="nav-link active" href="../research/residual-stream-geometry.html" aria-current="page"> 
+<span class="menu-text">Residual stream geometry</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../research/appendix.html"> 
+<span class="menu-text">Technical appendix</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Fodenthal"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:fx.odenthal@gmail.com"> <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -128,7 +165,7 @@ window.Quarto = {
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
-  <ul>
+  <ul class="collapse">
   <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#what-was-found" id="toc-what-was-found" class="nav-link" data-scroll-target="#what-was-found">What Was Found</a>
@@ -145,7 +182,7 @@ window.Quarto = {
   <li><a href="#appendix-a-time-lagged-probe-estimator" id="toc-appendix-a-time-lagged-probe-estimator" class="nav-link" data-scroll-target="#appendix-a-time-lagged-probe-estimator">Appendix A: Time-lagged probe estimator</a></li>
   <li><a href="#appendix-b-held-out-projection-collapse-method" id="toc-appendix-b-held-out-projection-collapse-method" class="nav-link" data-scroll-target="#appendix-b-held-out-projection-collapse-method">Appendix B: Held-out projection-collapse method</a></li>
   <li><a href="#appendix-c-scale-calibration-for-unitless-overlap-scores" id="toc-appendix-c-scale-calibration-for-unitless-overlap-scores" class="nav-link" data-scroll-target="#appendix-c-scale-calibration-for-unitless-overlap-scores">Appendix C: Scale calibration for unitless overlap scores</a></li>
-  <li><a href="#appendix-d-semantic-readout-procedure" id="toc-appendix-d-semantic-readout-procedure" class="nav-link" data-scroll-target="#appendix-d-semantic-readout-procedure">Appendix D: Semantic readout procedure</a></li>
+  <li><a href="#appendix-d-supervised-semantic-audit" id="toc-appendix-d-supervised-semantic-audit" class="nav-link" data-scroll-target="#appendix-d-supervised-semantic-audit">Appendix D: Supervised semantic audit</a></li>
   <li><a href="#appendix-e-slow-subspace-battery" id="toc-appendix-e-slow-subspace-battery" class="nav-link" data-scroll-target="#appendix-e-slow-subspace-battery">Appendix E: Slow-subspace battery</a></li>
   <li><a href="#appendix-f-why-slowness-is-an-off-diagonal-property" id="toc-appendix-f-why-slowness-is-an-off-diagonal-property" class="nav-link" data-scroll-target="#appendix-f-why-slowness-is-an-off-diagonal-property">Appendix F: Why slowness is an off-diagonal property</a></li>
   </ul></li>
@@ -157,18 +194,29 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">The Residual Stream Has a Geometry of Time</h1>
+<h1 class="title">Most of the residual stream forgets within a token A compact subspace does not</h1>
 </div>
 
+<div>
+  <div class="description">
+    An experiment on the sequence-time geometry of transformer residual streams
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Felix Odenthal </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 5, 2026</p>
+      <p class="date">June 6, 2026</p>
     </div>
   </div>
   
@@ -180,60 +228,65 @@ window.Quarto = {
 </header>
 
 
-<section id="preface" class="level2">
-<h2 class="anchored" data-anchor-id="preface">Preface</h2>
-<p>This is a preliminary writeup for an experiment on residual stream geometry, suggesting transformers may keep track of context in a surprisingly compact way. Information that persists across many tokens is not diffuse across activation space; it concentrates in a low-dimensional subspace that can be projected out, compared to attention/MLP writes, and maybe even targeted by interventions.</p>
+<p><a href="https://www.lesswrong.com/posts/jkEnRkokmzvvKNzzB/the-residual-stream-has-a-geometry-of-time-1" class="external-link">Read the published post on LessWrong</a> · <a href="../research/appendix.html" class="secondary-link">Open the standalone technical appendix</a> · <a href="../downloads/residual-stream-geometry-technical-appendix.docx" class="secondary-link">Download the appendix as Word</a></p>
+<section id="preface" class="level1">
+<h1>Preface</h1>
+<p>This is a preliminary writeup for an experiment on residual stream geometry. The research direction seems pretty underexplored, so I’m posting early to collect objections, research intuitions, and connections to problems other people are thinking about before I invest in the larger run.</p>
+<p><em>The case for skimming this post:</em> this experiment suggests transformers may keep track of context in a surprisingly compact way. Directions whose residual-stream projections change slowly across many tokens are not diffuse across activation space; they concentrate in a low-dimensional subspace that can be projected out, compared to attention/MLP writes, and maybe even targeted by interventions.</p>
+<p>The code for the experiment is available at this <a href="https://github.com/Fodenthal/residual-geometry-experiment">public repo</a>.</p>
 </section>
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<section id="summary" class="level1">
+<h1>Summary</h1>
 <ul>
 <li><p>The residual stream is commonly analogized to the transformer’s “working memory.” At each token position, a high-dimensional vector accumulates the attention and MLP deltas. This picture considers state transformations along the depth-time axis, i.e.&nbsp;layer by layer.</p></li>
-<li><p>There is a second axis of sequence-time. Within a layer, the model must also keep track of information at position <span class="math inline">\(t\)</span> which is useful at position <span class="math inline">\(t + k\)</span>. This experiment aims to discover the geometry of how the model tracks state across tokens.</p></li>
+<li><p>There is a second axis of sequence-time. Within a layer, the model must also keep track of information at position <span class="math inline">\(t\)</span> which is useful at position <span class="math inline">\(t + k\)</span>. This experiment aims to discover the geometry of directions whose residual-stream projections remain correlated across many tokens.</p></li>
 <li><p>A direction’s (sequence) timescale <span class="math inline">\(\tau_j\)</span> is the lag at which its sample autocorrelation first drops below <span class="math inline">\(1/e \approx 0.37\)</span>. To calculate <span class="math inline">\(\tau_j\)</span> for direction <span class="math inline">\(v_j\)</span>, I project the residual stream onto <span class="math inline">\(\hat v_j\)</span> at every token position, compute within-document autocorrelation curves, average them over documents to estimate lag-k autocorrelation <span class="math inline">\(R_j(k)\)</span>, and set <span class="math inline">\(\tau_j = \min\{k \geq 1 : R_j(k) &lt; 1/e\}\)</span>.</p></li>
+<li><p>A high timescale means a direction’s projected value changes slowly across long spans of tokens, but does not distinguish two mechanisms: each token independently recomputing a similar value, or a state value written once and read back at a later token for further computation.</p></li>
 <li><p>The primary experiment compares three probe families: 512 random directions (null baseline), 256 PCA directions (ranked by variance), and 256 time-lagged probes (multi-lag TICA style, ranked by persistence). Estimator details are in Appendix A.</p></li>
 <li><p>I estimated the distribution of timescales across residual-stream directions in layer 12 of Gemma-2-2B on 5,000 C4 documents, then investigated the properties of the high-<span class="math inline">\(\tau\)</span> directions: where they live in the ambient space, how many there are, what they appear to semantically encode, and whether their high timescales are tied to sequential context or just unigram statistics.</p></li>
+<li><p><strong>Findings preview:</strong> most residual directions are fast, as their projected values stop being predictive after just one token. But a small set of directions is much slower. These slow directions are not just duplicates of each other, are heavily dependent on sequential context, and span a region where generic directions are slow. On C4, the cautious interpretation is that this region mostly tracks durable document state, not abstract reasoning variables.</p></li>
 </ul>
 </section>
-<section id="what-was-found" class="level2">
-<h2 class="anchored" data-anchor-id="what-was-found">What Was Found</h2>
+<section id="what-was-found" class="level1">
+<h1>What Was Found</h1>
 <p><strong>Finding 1: The timescale distribution is extremely heavy-tailed, and the tail is carried by about 31 directions.</strong> Random and PCA directions have a 90th-percentile timescale of 1 token, carrying essentially no signal across positions. Time-lagged probes have a 90th-percentile timescale of 17 tokens.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="residual-geometry_files/F1_tau_histograms_by_probe_family.png" class="img-fluid figure-img"></p>
+<p><img src="../assets/figures/F1_tau_histograms_by_probe_family.png" class="img-fluid figure-img"></p>
 <figcaption>Timescale distributions by probe family.</figcaption>
 </figure>
 </div>
 <p>To quantify the tail, define a direction’s timescale excess as its timescale above the random-direction median,</p>
 <p><span class="math display">\[ \Delta \tau_j = \max\!\left(\tau_j - \operatorname{median}_{u \in \mathrm{random}}\tau_u,\ 0\right), \]</span></p>
-<p>and sort the excesses <span class="math inline">\(\Delta\tau_{(1)} \geq \cdots \geq \Delta\tau_{(1024)}\)</span> across the deduplicated eligible probe set. Roughly 31 directions carry about 80% of the total excess, <span class="math inline">\(\sum_{i=1}^{31}\Delta\tau_{(i)} / \sum_{i=1}^{1024}\Delta\tau_{(i)} \approx 0.8\)</span>. Also, the 31 directions are nonredundant, with low cosine sim and effective rank ~28/31 (orthogonality details in Appendix E).</p>
+<p>and sort the excesses <span class="math inline">\(\Delta\tau_{(1)} \geq \cdots \geq \Delta\tau_{(1024)}\)</span> across the deduplicated eligible probe set. Roughly 31 directions carry about 80% of the total excess, <span class="math inline">\(\sum_{i=1}^{31}\Delta\tau_{(i)} / \sum_{i=1}^{1024}\Delta\tau_{(i)} \approx 0.8\)</span>. Also, the 31 directions are nonredundant, with low cosine sim and effective rank ~28/31, meaning the set behaves like roughly 28 independent directions rather than a few repeated ones (orthogonality details in Appendix E).</p>
 <p><strong>Finding 2: Timescale depends on sequential order.</strong> Shuffling token positions within documents, which preserves the token multiset but destroys sequential context, collapses the top-decile timescale of slow probes from 17 tokens to 1 (94% reduction). This rules out token composition alone, such as recurring token clusters, as the reason for high <span class="math inline">\(\tau\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="residual-geometry_files/F2_permutation_collapse.png" class="img-fluid figure-img"></p>
+<p><img src="../assets/figures/F2_permutation_collapse.png" class="img-fluid figure-img"></p>
 <figcaption>Permutation control.</figcaption>
 </figure>
 </div>
-<section id="where-the-slow-directions-live-held-out-projection-collapse" class="level3">
-<h3 class="anchored" data-anchor-id="where-the-slow-directions-live-held-out-projection-collapse">Where the slow directions live: held-out projection collapse</h3>
+<section id="where-the-slow-directions-live-held-out-projection-collapse" class="level2">
+<h2 class="anchored" data-anchor-id="where-the-slow-directions-live-held-out-projection-collapse">Where the slow directions live: held-out projection collapse</h2>
 <p>This section asks two things with one test: 1) where in the residual stream the slow directions live and 2) whether they are the only high-timescale region. If persistent structure lived outside these directions then removing them would leave some behind, so a full collapse of held-out timescales is evidence they carry essentially all of it.</p>
 <p>I build three <span class="math inline">\(k\)</span>-dimensional bases, project each out of the residual stream, and recompute timescales on held-out probes. The held-out probes are time-lagged directions fit on a disjoint train shard, have nearly identical timescale distribution as the original time-lagged probe set (Q90 around 19-20 versus 17) before projection, and are not eligible for the basis we project out (construction details are in Appendix B).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="residual-geometry_files/F3_projection_collapse_by_basis.png" class="img-fluid figure-img"></p>
+<p><img src="../assets/figures/F3_projection_collapse_by_basis.png" class="img-fluid figure-img"></p>
 <figcaption>The collapse score <span class="math inline">\(C(k)\)</span> is the fractional drop in held-out median timescale after projecting out a <span class="math inline">\(k\)</span>-dimensional basis (Appendix B): <span class="math inline">\(C=1\)</span> means persistence is fully destroyed, <span class="math inline">\(C=0\)</span> means untouched.</figcaption>
 </figure>
 </div>
 <p>Projecting out the slow basis collapses persistence on held-out probes almost completely by <span class="math inline">\(k=256\)</span> (<span class="math inline">\(C \approx 1.0\)</span>). Removing the same number of top-PCA directions collapses it just as completely, while removing 256 random directions barely touches it (<span class="math inline">\(C \approx 0.10\)</span>).</p>
-<p><strong>Finding 3: Persistence depends on the high-variance substrate.</strong> It seems like a contradiction that PCA and slow directions are equally effective deletion bases, yet the 31-dim slow basis is only about 9% contained in PCA-31 (<span class="math inline">\(2.79\)</span> effective dimensions of overlap) and about 52% in PCA-256. In angle terms, the slow span is far from PCA-31 (median principal angle <span class="math inline">\(81^\circ\)</span>), though more overlapping with PCA-256 (median principal angle <span class="math inline">\(44^\circ\)</span>).</p>
+<p><strong>Finding 3: Persistence depends on the high-variance substrate.</strong> PCA-256 explains 67% of residual variance, so it makes sense this heavy deletion collapses persistence. What is intersting is that the 31-dim slow basis is an equally effective deletion basis but is only 9% contained in PCA-31 and explains only 9% residual variance. In angle terms, the slow span is far from PCA-31 (median principal angle <span class="math inline">\(81^\circ\)</span>), though more overlapping with PCA-256 (median principal angle <span class="math inline">\(44^\circ\)</span>).</p>
 <p>The resolution is from distinguishing where a slow direction’s <em>energy</em> sits from where its <em>slowness</em> comes from– it may have about half its energy outside PCA-256, but that isn’t what makes it slow. PCA diagonalizes the zero-lag covariance, so its components are uncorrelated at lag 0, and empirically each one alone is fast (low <span class="math inline">\(\tau\)</span>). But the lagged covariance isn’t diagonal in that basis! The slow directions are combinations of PCA components whose lagged cross-covariances reinforce each other, keeping the combined signal correlated out to large k. So slowness is a relational property of how components co-vary across lags, not a marginal property of any single component (a more rigorous treatment is in Appendix F).</p>
 <p>An intuitive image is that a single PCA axis is a note that fades at once, while a slow direction is a chord whose overtones ring on, living in how the notes combine rather than in the loudest among them. So deleting the slow directions removes a slowness ingredient many computations ride on, not an isolated module.</p>
 </section>
-<section id="are-just-the-directions-slow-or-do-they-span-a-slow-subspace" class="level3">
-<h3 class="anchored" data-anchor-id="are-just-the-directions-slow-or-do-they-span-a-slow-subspace">Are just the directions slow, or do they span a slow subspace?</h3>
+<section id="are-just-the-directions-slow-or-do-they-span-a-slow-subspace" class="level2">
+<h2 class="anchored" data-anchor-id="are-just-the-directions-slow-or-do-they-span-a-slow-subspace">Are just the directions slow, or do they span a slow subspace?</h2>
 <p>Finding 1 gave 31 slow axes, but the objective could have picked special directions while generic directions in their span remain fast (low <span class="math inline">\(\tau\)</span>). To test this, I sample random unit vectors inside the slow span, matched PCA spans, and the ambient space, then measure held-out timescale with the same estimator. Method and full set of checks are in Appendix E.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="residual-geometry_files/F8_random_in_span_tau_distributions.png" class="img-fluid figure-img"></p>
+<p><img src="../assets/figures/F8_random_in_span_tau_distributions.png" class="img-fluid figure-img"></p>
 <figcaption>Timescale distributions for generic Q31 directions and matched controls.</figcaption>
 </figure>
 </div>
@@ -284,7 +337,7 @@ window.Quarto = {
 <p>But the subspace is not uniformly slow. Sweeping its dimension reveals a steep internal gradient.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="residual-geometry_files/F9_nested_dimension_tau_curve.png" class="img-fluid figure-img"></p>
+<p><img src="../assets/figures/F9_nested_dimension_tau_curve.png" class="img-fluid figure-img"></p>
 <figcaption>Nested random-in-span timescale sweep.</figcaption>
 </figure>
 </div>
@@ -338,15 +391,15 @@ window.Quarto = {
 <p><em>Test split; validation tracks within a token or two.</em></p>
 <p>The structure is stable across splits (Spearman above <span class="math inline">\(0.99\)</span> between all split pairs, <span class="math inline">\(0.996\)</span> for random-in-span across validation and test, no train-to-test shrinkage). Full split-stability table and the test-inspection disclosure are in Appendix E.</p>
 </section>
-<section id="attention-aligned-geometry-exploratory" class="level3">
-<h3 class="anchored" data-anchor-id="attention-aligned-geometry-exploratory">Attention-aligned geometry (exploratory)</h3>
+<section id="attention-aligned-geometry-exploratory" class="level2">
+<h2 class="anchored" data-anchor-id="attention-aligned-geometry-exploratory">Attention-aligned geometry (exploratory)</h2>
 <p><strong>Finding 5: The slow directions align with attention-output geometry.</strong> What in the model creates the slow directions? The natural hypothesis is that attention writes/maintains them, as it is the model’s only mechanism for mixing information across positions.</p>
 <p>However, raw overlap with attention outputs is a confounded test. Since attention writes into the residual stream, which is dominated by a few top PCA axes, any two subspaces drawn from it overlap by default. I measure each direction’s overlap with the attention and MLP output subspaces and subtract its overlap with a matched-dimension PCA subspace to control for this.</p>
 <p>For a unit direction <span class="math inline">\(v\)</span> and a subspace projection matrix <span class="math inline">\(P\)</span>, the overlap score is <span class="math inline">\(B_P(v) = \|Pv\|_2\)</span>, and the excess attention and MLP overlaps are:</p>
 <p><span class="math display">\[ E_{\mathrm{attn}}(v) = B_{\mathrm{attn}}(v) - B_{\mathrm{resid}}(v), \qquad E_{\mathrm{MLP}}(v) = B_{\mathrm{MLP}}(v) - B_{\mathrm{resid}}(v). \]</span></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="residual-geometry_files/A3_attention_alignment_vs_residual_pca_control.png" class="img-fluid figure-img"></p>
+<p><img src="../assets/figures/A3_attention_alignment_vs_residual_pca_control.png" class="img-fluid figure-img"></p>
 <figcaption>Exploratory attention and MLP excess after residual-PCA controls.</figcaption>
 </figure>
 </div>
@@ -355,13 +408,13 @@ window.Quarto = {
 <p><span class="math display">\[ \frac{0.1164 - 0.0206}{0.0166} \approx 5.76. \]</span></p>
 <p>Overall, this test finds that long-timescale directions lie unusually close to attention output subspaces, with weaker evidence for late-MLP overlap. It doesn’t prove that attention causally maintains state in the slow subspace.</p>
 </section>
-<section id="what-the-directions-encode-exploratory" class="level3">
-<h3 class="anchored" data-anchor-id="what-the-directions-encode-exploratory">What the directions encode (exploratory)</h3>
+<section id="what-the-directions-encode-exploratory" class="level2">
+<h2 class="anchored" data-anchor-id="what-the-directions-encode-exploratory">What the directions encode (exploratory)</h2>
 <p>The goal is to characterize what the slow subspace carries, but the trap is that top-token labels are nearly free. Regardless of timescale, any direction yields a plausible story from its top tokens. Instead, for each direction I look for long, high-projection runs on the validation split and count how many distinct documents contain at least one, so a single page can’t drive the result. Details are in Appendix D.</p>
 <p>The contrast is large. A generic rotation inside the slow subspace has a median qualifying run of 126/500 val docs, and still 106 at the Q10. The matched controls collapse, as random PCA-31 has median 18 docs and sub-5 at 10th percentile, while PCA-128, PCA-256, and ambient-random are in the low single digits.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="residual-geometry_files/F7_semantic_span_cards.png" class="img-fluid figure-img"></p>
+<p><img src="../assets/figures/F7_semantic_span_cards.png" class="img-fluid figure-img"></p>
 <figcaption>Illustrative navigation only: coarse labels for three slow directions, not the evidence for the persistence claim.</figcaption>
 </figure>
 </div>
@@ -374,14 +427,14 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="what-this-result-means-so-far" class="level2">
-<h2 class="anchored" data-anchor-id="what-this-result-means-so-far">What This Result Means So Far</h2>
+<section id="what-this-result-means-so-far" class="level1">
+<h1>What This Result Means So Far</h1>
 <p>This experiment used one corpus, layer, and model, so it doesn’t license any broad interpretability claims.</p>
-<p>Currently, the contribution is the axis itself. Timescale ranks directions by what the model maintains across positions, a question sidestepped by the major decomp methods: PCA ranks directions by variance, SAEs find sparse features at single positions, and parameter decomp describes static weight structure. None of these directly answer what persists across time.</p>
+<p>Currently, the contribution is the axis itself. Timescale ranks directions by what stays correlated across positions, a question sidestepped by the major decomp methods: PCA ranks directions by variance, SAEs find sparse features at single positions, and parameter decomp describes static weight structure. None of these directly answer what stays correlated across time.</p>
 <p>On generalization, my prior is that a slow subspace is roughly model-general but its orientation is corpus-dependent. Persistent state has to live somewhere but the residual stream is too anisotropic for it to spread evenly, so some compact slow geometry should recur.</p>
 </section>
-<section id="continuations-what-i-want-to-de-risk" class="level2">
-<h2 class="anchored" data-anchor-id="continuations-what-i-want-to-de-risk">Continuations: What I Want to De-risk</h2>
+<section id="continuations-what-i-want-to-de-risk" class="level1">
+<h1>Continuations: What I Want to De-risk</h1>
 <p>A high-<span class="math inline">\(\tau\)</span> direction is likely one of two things. <strong>1) Held state:</strong> the value sits at a steady level over a passage and varies between passages, e.g.&nbsp;what C4 appears to surface. <strong>2) Live variable:</strong> the value changes over the passage while staying readable from the same direction, like a count, proof state, or intermediate conclusion. The second case is the LRH with dynamics: we still have variables that correspond to fixed directions, but the scalar value is updated over sequence-time.</p>
 <p>Concrete experimental continuation:</p>
 <ol type="1">
@@ -390,15 +443,15 @@ window.Quarto = {
 </ol>
 <p>The interpretability payoff depends on which world that test lands in. If the slow subspace is only web-document register, timescale is less exciting. If it carries maintained reasoning variables, then some really interesting questions become askable: whether a steering vector shifts maintained state or just “greases the logits,” whether features decompose into fast and slow components, whether sparse-feature methods could be run not over the whole activation space but constrained to the high-timescale region.</p>
 </section>
-<section id="appendices" class="level2">
-<h2 class="anchored" data-anchor-id="appendices">Appendices</h2>
-<section id="appendix-a-time-lagged-probe-estimator" class="level3">
-<h3 class="anchored" data-anchor-id="appendix-a-time-lagged-probe-estimator">Appendix A: Time-lagged probe estimator</h3>
+<section id="appendices" class="level1">
+<h1>Appendices</h1>
+<section id="appendix-a-time-lagged-probe-estimator" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-a-time-lagged-probe-estimator">Appendix A: Time-lagged probe estimator</h2>
 <p>Let <span class="math inline">\(r_{d,t}^{(\ell)} \in \mathbb{R}^{d_{\mathrm{model}}}\)</span> be the residual stream for document <span class="math inline">\(d\)</span>, token <span class="math inline">\(t\)</span>, and hook layer <span class="math inline">\(\ell\)</span>. Train-token centering uses</p>
 <p><span class="math display">\[ \mu = \mathbb{E}_{d,t \in \mathrm{train}}[r_{d,t}^{(\ell)}], \qquad \bar r_{d,t} = r_{d,t}^{(\ell)} - \mu. \]</span></p>
 <p>Validation/test tokens are not used to fit PCA directions, time-lagged probes, or centering statistics.</p>
-<section id="timescale-estimator" class="level4">
-<h4 class="anchored" data-anchor-id="timescale-estimator">Timescale estimator</h4>
+<section id="timescale-estimator" class="level3">
+<h3 class="anchored" data-anchor-id="timescale-estimator">Timescale estimator</h3>
 <p>For a unit probe <span class="math inline">\(\hat v_j\)</span>,</p>
 <p><span class="math display">\[ P_{d,t,j} = \hat v_j^\top r_{d,t}^{(\ell)}. \]</span></p>
 <p>Within-document demeaning:</p>
@@ -412,8 +465,8 @@ window.Quarto = {
 <p><span class="math display">\[ \tau_j = \min\{k \geq 1 : R_j(k) &lt; 1/e\}. \]</span></p>
 <p>If no crossing occurs by <span class="math inline">\(K=512\)</span>, the probe is marked right-censored. In this pilot, no non-random probes were right-censored.</p>
 </section>
-<section id="time-lagged-probe-fitting" class="level4">
-<h4 class="anchored" data-anchor-id="time-lagged-probe-fitting">Time-lagged probe fitting</h4>
+<section id="time-lagged-probe-fitting" class="level3">
+<h3 class="anchored" data-anchor-id="time-lagged-probe-fitting">Time-lagged probe fitting</h3>
 <p>The time-lagged probes are fit on train documents only. Estimate</p>
 <p><span class="math display">\[ \Sigma_0 = \mathbb{E}[\bar r_t \bar r_t^\top], \qquad \Sigma_k = \mathbb{E}[\bar r_t \bar r_{t+k}^\top]. \]</span></p>
 <p>Use the symmetrized multi-lag covariance</p>
@@ -473,8 +526,8 @@ window.Quarto = {
 <pre class="text"><code>0.9082, 0.8654, 0.8534, 0.8218, 0.7620, 0.7357,
 0.7230, 0.6835, 0.6419, 0.6071, 0.5948, 0.5680</code></pre>
 </section>
-<section id="split-hygiene" class="level4">
-<h4 class="anchored" data-anchor-id="split-hygiene">Split hygiene</h4>
+<section id="split-hygiene" class="level3">
+<h3 class="anchored" data-anchor-id="split-hygiene">Split hygiene</h3>
 <ul>
 <li>Train documents are used to fit directions and centering.</li>
 <li>Validation/test documents are used to estimate <span class="math inline">\(R_j(k)\)</span> and <span class="math inline">\(\tau_j\)</span>.</li>
@@ -482,8 +535,8 @@ window.Quarto = {
 </ul>
 </section>
 </section>
-<section id="appendix-b-held-out-projection-collapse-method" class="level3">
-<h3 class="anchored" data-anchor-id="appendix-b-held-out-projection-collapse-method">Appendix B: Held-out projection-collapse method</h3>
+<section id="appendix-b-held-out-projection-collapse-method" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-b-held-out-projection-collapse-method">Appendix B: Held-out projection-collapse method</h2>
 <p>Let <span class="math inline">\(G_k\)</span> be the top-<span class="math inline">\(k\)</span> eligible residual probes ranked by held-out within-document timescale after deduplication. I orthonormalize these directions to obtain a slow-direction basis <span class="math inline">\(Q_k\)</span>.</p>
 <p>For each residual vector, I remove the component in this basis:</p>
 <p><span class="math display">\[ r^{\perp k}_{d,t} = r_{d,t} - Q_kQ_k^\top r_{d,t}. \]</span></p>
@@ -496,8 +549,8 @@ window.Quarto = {
 <li><span class="math inline">\(J_{\mathrm{lag\text{-}heldout}}\)</span>: independently fit time-lagged probes, fit on disjoint train documents from the candidate time-lagged probes and never eligible for <span class="math inline">\(G_k\)</span>.</li>
 </ul>
 <p>The candidate time-lagged probes used to construct <span class="math inline">\(G_k\)</span> are fit on train shard A. The held-out time-lagged evaluation probes are fit on train shard B. Both are evaluated on the same validation/test documents. This makes the test non-circular: the evaluation probes are not used to construct the projected basis, but their before/after timescales are measured on the same held-out documents.</p>
-<section id="projection-collapse-split-details" class="level4">
-<h4 class="anchored" data-anchor-id="projection-collapse-split-details">Projection-collapse split details</h4>
+<section id="projection-collapse-split-details" class="level3">
+<h3 class="anchored" data-anchor-id="projection-collapse-split-details">Projection-collapse split details</h3>
 <p>The corpus contained 5,000 C4 documents of length 1,024 tokens:</p>
 <table class="caption-top table">
 <thead>
@@ -548,8 +601,8 @@ window.Quarto = {
 <p>The random-control basis tests whether collapse is caused merely by deleting any <span class="math inline">\(k\)</span> dimensions. The PCA basis tests whether held-out persistence functionally depends on high-variance residual geometry.</p>
 </section>
 </section>
-<section id="appendix-c-scale-calibration-for-unitless-overlap-scores" class="level3">
-<h3 class="anchored" data-anchor-id="appendix-c-scale-calibration-for-unitless-overlap-scores">Appendix C: Scale calibration for unitless overlap scores</h3>
+<section id="appendix-c-scale-calibration-for-unitless-overlap-scores" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-c-scale-calibration-for-unitless-overlap-scores">Appendix C: Scale calibration for unitless overlap scores</h2>
 <p>For unitless overlap/excess scores <span class="math inline">\(S(v)\)</span>, I report scale relative to matched random residual directions:</p>
 <p><span class="math display">\[ \mu_{\mathrm{rand}} = \operatorname{mean}_{v \in \mathrm{random}} S(v), \qquad \sigma_{\mathrm{rand}} = \operatorname{sd}_{v \in \mathrm{random}} S(v), \]</span></p>
 <p><span class="math display">\[ z_{\mathrm{rand}}(S) = \frac{S_{\mathrm{group}}-\mu_{\mathrm{rand}}}{\sigma_{\mathrm{rand}}}. \]</span></p>
@@ -558,19 +611,87 @@ window.Quarto = {
 <p>This is a descriptive scale calibration, not a p-value. The 31 slow directions were selected by the pipeline and are not IID samples from a null distribution, so the calculation should be read as “large on the random-direction scale,” not as a Gaussian-significance claim.</p>
 <p>The residual-PCA subtraction is useful for controlling residual-stream anisotropy, but it should not be read literally for PCA axes themselves. Top PCA directions have higher raw attention overlap than the slow directions, but median <span class="math inline">\(\tau = 1\)</span>. After subtracting the matched residual-PCA baseline, their median excess attention overlap is <span class="math inline">\(-0.3991\)</span>, about <span class="math inline">\(25\)</span> control SDs below the random mean. This does not mean PCA directions are “anti-attention”; their residual-PCA baseline is mechanically large because they are PCA axes. The point is just that raw attention overlap is not the signal.</p>
 </section>
-<section id="appendix-d-semantic-readout-procedure" class="level3">
-<h3 class="anchored" data-anchor-id="appendix-d-semantic-readout-procedure">Appendix D: Semantic readout procedure</h3>
-<p>The semantic readout is exploratory and is not used in locked quantitative results.</p>
-<p>For slow direction <span class="math inline">\(v_j\)</span>, compute held-out validation projections:</p>
-<p><span class="math display">\[ P_{d,t,j}=v_j^\top r_{d,t}^{(\ell)}. \]</span></p>
-<p>For the document-coverage comparison, I apply the same procedure to ten sampled vectors from each span family. For each direction, I take the global q95 projection threshold, retain contiguous above-threshold token runs of at least 8 tokens, and collapse them to distinct validation documents. This asks how widely a direction sustains a long high-projection run without letting repeated runs from one page inflate the count. I also report the number of retained runs per covered document.</p>
-<p>Across families the retained-runs-per-covered-document counts are about 4.9 for the selected slow directions, 3.8 for random-in-span rotations, and near 1 for the PCA and ambient controls, the same graded structure the participation ratios show: the objective picks the sharpest axes, and generic directions in their span are slower but softer.</p>
-<p>As a separate window-independence check, I count distinct source documents among the top 12 projection windows. A lower count can be the expected signature of document-state rather than an inflation artifact: a direction that tracks document-level state should produce correlated windows within a page. The distinct-document run count is the safeguard against mistaking one repeated page for a corpus-wide effect. In the body result, the slow-subspace median of 126 distinct documents already rules out one over-represented page driving the effect. Separately, slow-subspace directions touch fewer distinct top-window documents than ambient-random ones (median 7 versus 12), which is the expected signature of document-level tracking rather than scattered token firing.</p>
-<p>Finally, I inspect readable windows around upper- and lower-tail token positions of <span class="math inline">\(P_{d,t,j}\)</span>. Labels summarize recurring patterns in those tail examples.</p>
-<p>These are qualitative projection-tail labels, not trained classifiers, causal features, or validated semantic variables. For example, “legal/privacy boilerplate” means that many tail examples had that style; it does not mean the direction exclusively encodes that concept.</p>
+<section id="appendix-d-supervised-semantic-audit" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-d-supervised-semantic-audit">Appendix D: Supervised semantic audit</h2>
+<p>This was a separate supervised characterization experiment on the already-frozen slow-31 subspace; it did not refit the slow geometry. I used Gemma-2-2B layer 12 <code>hook_resid_post</code> on 1,200 C4 documents split into 800 fit, 200 validation, and 200 sealed test documents. Each document had context length 1,024, with residuals sampled at 12 token positions from 256 through 960, giving a captured tensor of shape <span class="math inline">\(1200 \times 12 \times 2304\)</span>. Labels were frozen before residual activations were captured. The planned Gemma-2-2B-IT labeler was unavailable, so the labeling model was prospectively switched to pinned Gemma-2-9B-IT before inspecting activations or results; the prompt, ontology, and abstention rule were unchanged.</p>
+<p>The targets were document topic and register. The realized topic ontology was coarse because <code>other_or_unclear</code> accounted for 899 of 1,200 documents. Retaining only classes with at least 30 fit documents left <code>business_and_finance</code>, <code>home_food_and_lifestyle</code>, and <code>other_or_unclear</code>; the sealed topic analysis therefore used 169 of 200 test documents.</p>
+<p>For every sampled activation, I compared the frozen slow-31 coordinates with equal-rank PCA-31 and 20 frozen random rank-31 controls sampled inside a fit-only PCA-256 span. The classifier tested incremental information rather than raw decodability. Its nuisance representation contained token position, token-derived features, and a 32-dimensional PCA compression of local-window mean embeddings. For a candidate subspace <span class="math inline">\(S\)</span>, the semantic gain was</p>
+<p><span class="math display">\[ G_S = CE(\text{nuisance only}) - CE(\text{nuisance}+S), \]</span></p>
+<p>in nats per example. Positive gain means that <span class="math inline">\(S\)</span> improves held-out prediction beyond the local-context baseline. Inference was document-weighted, used 1,000 paired document-bootstrap replicates, and accessed the sealed test set once.</p>
+<section id="sealed-topic-result" class="level3">
+<h3 class="anchored" data-anchor-id="sealed-topic-result">Sealed topic result</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Representation</th>
+<th style="text-align: right;">Cross-entropy gain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Slow-31</td>
+<td style="text-align: right;">0.03337 nats</td>
+</tr>
+<tr class="even">
+<td>PCA-31</td>
+<td style="text-align: right;">0.01733</td>
+</tr>
+<tr class="odd">
+<td>Random-31 median</td>
+<td style="text-align: right;">0.00970</td>
+</tr>
+<tr class="even">
+<td>Random-31 Q95</td>
+<td style="text-align: right;">0.01575</td>
+</tr>
+<tr class="odd">
+<td>Best of 20 random controls</td>
+<td style="text-align: right;">0.01661</td>
+</tr>
+</tbody>
+</table>
+<p>Slow-31 beat all 20 frozen random controls, provided about <span class="math inline">\(1.93\times\)</span> the gain of PCA-31, and exceeded the prespecified 0.01-nat effect-health reference. The paired bootstrap estimates were:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 36%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">95% confidence interval</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(G_{\mathrm{slow}}\)</span></td>
+<td style="text-align: right;">0.03315</td>
+<td style="text-align: right;">[0.01335, 0.05595]</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(G_{\mathrm{slow}}-G_{\mathrm{random,med}}\)</span></td>
+<td style="text-align: right;">0.02377</td>
+<td style="text-align: right;">[0.01270, 0.03628]</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(G_{\mathrm{slow}}-G_{\mathrm{PCA}}\)</span></td>
+<td style="text-align: right;">0.01586</td>
+<td style="text-align: right;">[0.00475, 0.02743]</td>
+</tr>
+</tbody>
+</table>
+<p>All three lower bounds were positive. Register was inconclusive: the raw sealed-test gains were 0.00946 for Slow-31, 0.00637 for PCA-31, and 0.00158 for the random median, but every relevant bootstrap interval crossed zero.</p>
+<p>The topic result was not explained by residual energy. Projected fit energy was approximately 15.4 for Slow-31, 28–33 for the random controls, and 138–139 for PCA-31. Slow-31 therefore predicted topic better while capturing substantially less activation energy. The random controls were rank-matched but were not explicitly energy-matched.</p>
 </section>
-<section id="appendix-e-slow-subspace-battery" class="level3">
-<h3 class="anchored" data-anchor-id="appendix-e-slow-subspace-battery">Appendix E: Slow-subspace battery</h3>
+<section id="internal-semantic-geometry" class="level3">
+<h3 class="anchored" data-anchor-id="internal-semantic-geometry">Internal semantic geometry</h3>
+<p>Because topic passed the first gate, I tested how many supervised directions within Slow-31 were needed for the readout. Validation gains at semantic ranks <span class="math inline">\(r \in \{1,2,4,8\}\)</span> were 0.0140, 0.0257, 0.0257, and 0.0257 nats, respectively. Rank 2 was the smallest rank retaining at least 90% of the full slow-space topic gain. Since a three-class multinomial readout has at most two independent class-contrast dimensions, low rank alone is not strong evidence. I therefore fit the rank-2 semantic span independently on two document-disjoint halves and measured mean squared canonical correlation. The observed overlap was 0.4546, versus a median of 0.0644, Q95 of 0.1981, and maximum of 0.2465 across 50 document-label-shuffle refits. None of the shuffled controls reached the observed overlap; the plus-one empirical <span class="math inline">\(p\)</span>-value was approximately 0.0196. Thus the orientation of the two-dimensional topic readout reproduced across independent document splits.</p>
+</section>
+</section>
+<section id="appendix-e-slow-subspace-battery" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-e-slow-subspace-battery">Appendix E: Slow-subspace battery</h2>
 <p>This appendix details the diagnostics behind Finding 4. All quantities are evaluated on held-out validation and test documents using the timescale estimator of Appendix A. The battery operates on saved projection artifacts; it performs no additional model forward pass or probe refit beyond the sampling described here.</p>
 <p><strong>Random-in-span sampling.</strong> Let <span class="math inline">\(Q_{31}\)</span> be the orthonormalized basis of the 31 directions from Finding 1. More generally, for a <span class="math inline">\(k\)</span>-dimensional subspace with orthonormal basis <span class="math inline">\(Q_k\)</span>, I sample coefficients</p>
 <p><span class="math display">\[ z \sim \mathcal{N}(0, I_k) \]</span></p>
@@ -664,8 +785,8 @@ window.Quarto = {
 <p><strong>Split stability.</strong> The 31 selected directions have median <span class="math inline">\(\tau\)</span> of <span class="math inline">\(17\)</span> (train), <span class="math inline">\(16\)</span> (val), <span class="math inline">\(17\)</span> (test), with Spearman correlations of <span class="math inline">\(0.99\)</span> across all split pairs and a train-to-test median shrinkage ratio of <span class="math inline">\(1.0\)</span>. The random-in-span endpoint reproduces across val and test with Spearman <span class="math inline">\(0.996\)</span> and median absolute <span class="math inline">\(\tau\)</span> change of 1, with the fraction above the per-split null equal to <span class="math inline">\(1.0\)</span> on both. This rules out the shrinkage regime in which directions are slow on the fit shard and regress to the null on held-out data.</p>
 <p><strong>Disclosure.</strong> The test split had been inspected elsewhere in the workflow before the battery rule was locked, so test results are formally exploratory. Validation is the independent held-out reference and tells the same story.</p>
 </section>
-<section id="appendix-f-why-slowness-is-an-off-diagonal-property" class="level3">
-<h3 class="anchored" data-anchor-id="appendix-f-why-slowness-is-an-off-diagonal-property">Appendix F: Why slowness is an off-diagonal property</h3>
+<section id="appendix-f-why-slowness-is-an-off-diagonal-property" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-f-why-slowness-is-an-off-diagonal-property">Appendix F: Why slowness is an off-diagonal property</h2>
 <p>Write a slow direction in the full PCA basis,</p>
 <p><span class="math display">\[ v = \sum_i a_i u_i, \]</span></p>
 <p>where <span class="math inline">\(u_i\)</span> are the PCA axes and <span class="math inline">\(a_i^2\)</span> is its energy on component <span class="math inline">\(i\)</span>. Its lag-<span class="math inline">\(k\)</span> autocovariance is</p>
@@ -753,7 +874,7 @@ window.Quarto = {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/Fodenthal\.github\.io\/");
+        var filterRegex = new RegExp("https:\/\/fodenthal\.github\.io");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -767,6 +888,11 @@ window.Quarto = {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -1084,18 +1210,19 @@ window.Quarto = {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-      &nbsp;
-    </div>   
+<p>Felix Odenthal</p>
+</div>   
     <div class="nav-footer-center">
-<p>Contact: <a href="mailto:fx.odenthal@gmail.com">fx.odenthal@gmail.com</a></p>
-</div>
-    <div class="nav-footer-right">
       &nbsp;
     </div>
+    <div class="nav-footer-right">
+<p>Mechanistic interpretability research</p>
+</div>
   </div>
 </footer>
 
 
 
 
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

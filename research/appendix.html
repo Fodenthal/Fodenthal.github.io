@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Felix Odenthal">
+<meta name="description" content="Estimator details, controls, semantic audit, and subspace diagnostics">
+
+<title>Technical Appendix for the Residual Stream Geometry Experiment – Felix Odenthal</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/figures/F1_tau_histograms_by_probe_family.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-445930127971cf0570f862e9caa14161.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Felix Odenthal</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../research/residual-stream-geometry.html"> 
+<span class="menu-text">Residual stream geometry</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../research/appendix.html" aria-current="page"> 
+<span class="menu-text">Technical appendix</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Fodenthal"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:fx.odenthal@gmail.com"> <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#appendix-a-time-lagged-probe-estimator" id="toc-appendix-a-time-lagged-probe-estimator" class="nav-link active" data-scroll-target="#appendix-a-time-lagged-probe-estimator">Appendix A: Time-lagged probe estimator</a>
+  <ul class="collapse">
+  <li><a href="#timescale-estimator" id="toc-timescale-estimator" class="nav-link" data-scroll-target="#timescale-estimator">Timescale estimator</a></li>
+  <li><a href="#time-lagged-probe-fitting" id="toc-time-lagged-probe-fitting" class="nav-link" data-scroll-target="#time-lagged-probe-fitting">Time-lagged probe fitting</a></li>
+  <li><a href="#split-hygiene" id="toc-split-hygiene" class="nav-link" data-scroll-target="#split-hygiene">Split hygiene</a></li>
+  </ul></li>
+  <li><a href="#appendix-b-held-out-projection-collapse-method" id="toc-appendix-b-held-out-projection-collapse-method" class="nav-link" data-scroll-target="#appendix-b-held-out-projection-collapse-method">Appendix B: Held-out projection-collapse method</a>
+  <ul class="collapse">
+  <li><a href="#projection-collapse-split-details" id="toc-projection-collapse-split-details" class="nav-link" data-scroll-target="#projection-collapse-split-details">Projection-collapse split details</a></li>
+  </ul></li>
+  <li><a href="#appendix-c-scale-calibration-for-unitless-overlap-scores" id="toc-appendix-c-scale-calibration-for-unitless-overlap-scores" class="nav-link" data-scroll-target="#appendix-c-scale-calibration-for-unitless-overlap-scores">Appendix C: Scale calibration for unitless overlap scores</a></li>
+  <li><a href="#appendix-d-supervised-semantic-audit" id="toc-appendix-d-supervised-semantic-audit" class="nav-link" data-scroll-target="#appendix-d-supervised-semantic-audit">Appendix D: Supervised semantic audit</a>
+  <ul class="collapse">
+  <li><a href="#sealed-topic-result" id="toc-sealed-topic-result" class="nav-link" data-scroll-target="#sealed-topic-result">Sealed topic result</a></li>
+  <li><a href="#internal-semantic-geometry" id="toc-internal-semantic-geometry" class="nav-link" data-scroll-target="#internal-semantic-geometry">Internal semantic geometry</a></li>
+  </ul></li>
+  <li><a href="#appendix-e-slow-subspace-battery" id="toc-appendix-e-slow-subspace-battery" class="nav-link" data-scroll-target="#appendix-e-slow-subspace-battery">Appendix E: Slow-subspace battery</a></li>
+  <li><a href="#appendix-f-why-slowness-is-an-off-diagonal-property" id="toc-appendix-f-why-slowness-is-an-off-diagonal-property" class="nav-link" data-scroll-target="#appendix-f-why-slowness-is-an-off-diagonal-property">Appendix F: Why slowness is an off-diagonal property</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Technical Appendix for the Residual Stream Geometry Experiment</h1>
+</div>
+
+<div>
+  <div class="description">
+    Estimator details, controls, semantic audit, and subspace diagnostics
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Felix Odenthal </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="../downloads/residual-stream-geometry-technical-appendix.docx" class="download-button">Download this appendix as a Word document</a></p>
+<section id="appendix-a-time-lagged-probe-estimator" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-a-time-lagged-probe-estimator">Appendix A: Time-lagged probe estimator</h2>
+<p>Let <span class="math inline">\(r_{d,t}^{(\ell)} \in \mathbb{R}^{d_{\mathrm{model}}}\)</span> be the residual stream for document <span class="math inline">\(d\)</span>, token <span class="math inline">\(t\)</span>, and hook layer <span class="math inline">\(\ell\)</span>. Train-token centering uses</p>
+<p><span class="math display">\[ \mu = \mathbb{E}_{d,t \in \mathrm{train}}[r_{d,t}^{(\ell)}], \qquad \bar r_{d,t} = r_{d,t}^{(\ell)} - \mu. \]</span></p>
+<p>Validation/test tokens are not used to fit PCA directions, time-lagged probes, or centering statistics.</p>
+<section id="timescale-estimator" class="level3">
+<h3 class="anchored" data-anchor-id="timescale-estimator">Timescale estimator</h3>
+<p>For a unit probe <span class="math inline">\(\hat v_j\)</span>,</p>
+<p><span class="math display">\[ P_{d,t,j} = \hat v_j^\top r_{d,t}^{(\ell)}. \]</span></p>
+<p>Within-document demeaning:</p>
+<p><span class="math display">\[ \tilde P_{d,t,j} = P_{d,t,j} - \frac{1}{T} \sum_{u=0}^{T-1} P_{d,u,j}. \]</span></p>
+<p>Per-document lag-<span class="math inline">\(k\)</span> autocorrelation:</p>
+<p><span class="math display">\[ r_{j,d}(k) = \operatorname{corr} \left( \tilde P_{d,0:T-k,j}, \tilde P_{d,k:T,j} \right). \]</span></p>
+<p>Probe-level curve, with equal document weighting:</p>
+<p><span class="math display">\[ R_j(k) = \frac{1}{|\mathcal D_{j,k}|} \sum_{d \in \mathcal D_{j,k}} r_{j,d}(k), \]</span></p>
+<p>where <span class="math inline">\(\mathcal D_{j,k}\)</span> excludes document/probe/lag entries with near-zero lag-slice variance. Pilot requires <span class="math inline">\(|\mathcal D_{j,k}| \geq 100\)</span>.</p>
+<p>I smooth <span class="math inline">\(R_j(k)\)</span> with a centered moving average of width 5 for <span class="math inline">\(k \geq 1\)</span>, set <span class="math inline">\(R_j(0)=1\)</span>, and clip to <span class="math inline">\([-1,1]\)</span>. The reported timescale is</p>
+<p><span class="math display">\[ \tau_j = \min\{k \geq 1 : R_j(k) &lt; 1/e\}. \]</span></p>
+<p>If no crossing occurs by <span class="math inline">\(K=512\)</span>, the probe is marked right-censored. In this pilot, no non-random probes were right-censored.</p>
+</section>
+<section id="time-lagged-probe-fitting" class="level3">
+<h3 class="anchored" data-anchor-id="time-lagged-probe-fitting">Time-lagged probe fitting</h3>
+<p>The time-lagged probes are fit on train documents only. Estimate</p>
+<p><span class="math display">\[ \Sigma_0 = \mathbb{E}[\bar r_t \bar r_t^\top], \qquad \Sigma_k = \mathbb{E}[\bar r_t \bar r_{t+k}^\top]. \]</span></p>
+<p>Use the symmetrized multi-lag covariance</p>
+<p><span class="math display">\[ \Sigma_{\mathrm{lag}} = \sum_{k \in \{8,16,32,64,128\}} \frac{\Sigma_k+\Sigma_k^\top}{2}. \]</span></p>
+<p>Time-lagged probes are the leading generalized eigenvectors of</p>
+<p><span class="math display">\[ \Sigma_{\mathrm{lag}} v = \lambda(\Sigma_0+\epsilon I)v, \]</span></p>
+<p>Conceptually, this maximizes a direction’s multi-lag self-predictiveness, <span class="math inline">\(\frac{v^\top \Sigma_{\mathrm{lag}} v}{v^\top(\Sigma_0+\epsilon I)v}\)</span>: the numerator rewards covariance with future positions, while the denominator prevents the estimator from merely selecting high-variance directions.</p>
+<p>with</p>
+<p><span class="math display">\[ \epsilon = 10^{-4} \frac{\operatorname{tr}(\Sigma_0)}{d_{\mathrm{model}}}. \]</span></p>
+<p>If <span class="math inline">\(\operatorname{cond}(\Sigma_0+\epsilon I)&gt;10^4\)</span>, <span class="math inline">\(\epsilon\)</span> is doubled until the condition number falls below <span class="math inline">\(10^4\)</span>, up to <span class="math inline">\(10^{-1}\operatorname{tr}(\Sigma_0)/d_{\mathrm{model}}\)</span>.</p>
+<p>The covariance objective chooses candidate directions; the held-out <span class="math inline">\(1/e\)</span> autocorrelation crossing defines the reported timescale. All reported <span class="math inline">\(\tau\)</span> values use this same within-document estimator. Their scale differs because they summarize different probe sets: the headline Q90 of 17 is computed across the original time-lagged probes, while the subspace battery in Appendix E samples rotations within the selected <span class="math inline">\(Q_{31}\)</span> span and nested prefixes concentrated on its slowest directions.</p>
+<p>This objective has standard precedents. It is closely related to <a href="https://doi.org/10.1162/089976602317318938">slow feature analysis</a> (Wiskott and Sejnowski, 2002) and to <a href="https://doi.org/10.1063/1.4811489">time-lagged independent component analysis</a> (Perez-Hernandez et al., 2013), which extracts slow collective coordinates through a lagged-covariance generalized eigenproblem. TICA has a variational interpretation in terms of slow transfer-operator modes, making operator language a useful analogy. I use the narrower claim here: this probe fit surfaces slow linear residual-stream modes; it is not a full Koopman or dynamic-mode-decomposition analysis.</p>
+<p>Fit health:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Diagnostic</th>
+<th style="text-align: right;">Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Lagged pair count</td>
+<td style="text-align: right;">19,488,000</td>
+</tr>
+<tr class="even">
+<td>Train token count</td>
+<td style="text-align: right;">4,096,000</td>
+</tr>
+<tr class="odd">
+<td>Whitening PCs requested / used</td>
+<td style="text-align: right;">512 / 512</td>
+</tr>
+<tr class="even">
+<td>Initial epsilon</td>
+<td style="text-align: right;">0.00034823549316734574</td>
+</tr>
+<tr class="odd">
+<td>Ridge doublings</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td>Final condition number</td>
+<td style="text-align: right;">147.78</td>
+</tr>
+<tr class="odd">
+<td>Fit unstable</td>
+<td style="text-align: right;">false</td>
+</tr>
+<tr class="even">
+<td>Anti-persistent or sign-changing count</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<p>Top generalized eigenvalues:</p>
+<pre class="text"><code>0.9082, 0.8654, 0.8534, 0.8218, 0.7620, 0.7357,
+0.7230, 0.6835, 0.6419, 0.6071, 0.5948, 0.5680</code></pre>
+</section>
+<section id="split-hygiene" class="level3">
+<h3 class="anchored" data-anchor-id="split-hygiene">Split hygiene</h3>
+<ul>
+<li>Train documents are used to fit directions and centering.</li>
+<li>Validation/test documents are used to estimate <span class="math inline">\(R_j(k)\)</span> and <span class="math inline">\(\tau_j\)</span>.</li>
+<li>Independent held-out lag probes are used for projection-collapse evaluation.</li>
+</ul>
+</section>
+</section>
+<section id="appendix-b-held-out-projection-collapse-method" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-b-held-out-projection-collapse-method">Appendix B: Held-out projection-collapse method</h2>
+<p>Let <span class="math inline">\(G_k\)</span> be the top-<span class="math inline">\(k\)</span> eligible residual probes ranked by held-out within-document timescale after deduplication. I orthonormalize these directions to obtain a slow-direction basis <span class="math inline">\(Q_k\)</span>.</p>
+<p>For each residual vector, I remove the component in this basis:</p>
+<p><span class="math display">\[ r^{\perp k}_{d,t} = r_{d,t} - Q_kQ_k^\top r_{d,t}. \]</span></p>
+<p>I then recompute held-out probe projections,</p>
+<p><span class="math display">\[ P^{\perp k}_{d,t,j} = v_j^\top r^{\perp k}_{d,t}, \]</span></p>
+<p>and re-estimate the same within-document autocorrelation timescale <span class="math inline">\(\tau_j\)</span> used in the main analysis.</p>
+<p>The held-out evaluation probes are fixed before projection-collapse evaluation:</p>
+<ul>
+<li><span class="math inline">\(J_{\mathrm{random}}\)</span>: fresh random unit directions, independent of the random probes eligible for <span class="math inline">\(G_k\)</span>;</li>
+<li><span class="math inline">\(J_{\mathrm{lag\text{-}heldout}}\)</span>: independently fit time-lagged probes, fit on disjoint train documents from the candidate time-lagged probes and never eligible for <span class="math inline">\(G_k\)</span>.</li>
+</ul>
+<p>The candidate time-lagged probes used to construct <span class="math inline">\(G_k\)</span> are fit on train shard A. The held-out time-lagged evaluation probes are fit on train shard B. Both are evaluated on the same validation/test documents. This makes the test non-circular: the evaluation probes are not used to construct the projected basis, but their before/after timescales are measured on the same held-out documents.</p>
+<section id="projection-collapse-split-details" class="level3">
+<h3 class="anchored" data-anchor-id="projection-collapse-split-details">Projection-collapse split details</h3>
+<p>The corpus contained 5,000 C4 documents of length 1,024 tokens:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Bucket</th>
+<th style="text-align: right;">Documents</th>
+<th style="text-align: right;">Tokens</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Full train split</td>
+<td style="text-align: right;">4,000</td>
+<td style="text-align: right;">4,096,000</td>
+</tr>
+<tr class="even">
+<td>Train shard A</td>
+<td style="text-align: right;">3,200</td>
+<td style="text-align: right;">3,276,800</td>
+</tr>
+<tr class="odd">
+<td>Train shard B</td>
+<td style="text-align: right;">800</td>
+<td style="text-align: right;">819,200</td>
+</tr>
+<tr class="even">
+<td>Validation</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">512,000</td>
+</tr>
+<tr class="odd">
+<td>Test</td>
+<td style="text-align: right;">500</td>
+<td style="text-align: right;">512,000</td>
+</tr>
+</tbody>
+</table>
+<p>For the projection-collapse analysis, the train split was further partitioned using a held-out train fraction of 0.2. Candidate time-lagged probes used to construct the projected basis were fit on train shard A. The 128 held-out time-lagged evaluation probes, <span class="math inline">\(J_{\mathrm{lag\text{-}heldout}}\)</span>, were independently fit on train shard B and were never eligible for the projected basis.</p>
+<p>Projection collapse was evaluated on validation during development and then confirmed on the test split using the same fixed probes and bases. No candidate probes, held-out probes, or projected bases were refit for the test confirmation.</p>
+<p>For each held-out evaluation family <span class="math inline">\(J_\star\)</span>, the collapse score is</p>
+<p><span class="math display">\[ C(k) = 1 - \frac{ \operatorname{median}_{j \in J_\star} [ \tau_j(r^{\perp k}) ] }{ \operatorname{median}_{j \in J_\star} [ \tau_j(r) ] }. \]</span></p>
+<p>I compute <span class="math inline">\(C(k)\)</span> for three matched bases:</p>
+<ol type="1">
+<li>the slow-direction basis;</li>
+<li>the top residual PCA basis;</li>
+<li>a random orthonormal control basis.</li>
+</ol>
+<p>The random-control basis tests whether collapse is caused merely by deleting any <span class="math inline">\(k\)</span> dimensions. The PCA basis tests whether held-out persistence functionally depends on high-variance residual geometry.</p>
+</section>
+</section>
+<section id="appendix-c-scale-calibration-for-unitless-overlap-scores" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-c-scale-calibration-for-unitless-overlap-scores">Appendix C: Scale calibration for unitless overlap scores</h2>
+<p>For unitless overlap/excess scores <span class="math inline">\(S(v)\)</span>, I report scale relative to matched random residual directions:</p>
+<p><span class="math display">\[ \mu_{\mathrm{rand}} = \operatorname{mean}_{v \in \mathrm{random}} S(v), \qquad \sigma_{\mathrm{rand}} = \operatorname{sd}_{v \in \mathrm{random}} S(v), \]</span></p>
+<p><span class="math display">\[ z_{\mathrm{rand}}(S) = \frac{S_{\mathrm{group}}-\mu_{\mathrm{rand}}}{\sigma_{\mathrm{rand}}}. \]</span></p>
+<p>This is a scale calibration, not a Gaussian significance test.</p>
+<p>For the attention-overlap result in Finding 5, <span class="math inline">\(S = E_{\mathrm{attn}}\)</span>. The reported slow-direction value, <span class="math inline">\(+0.1164\)</span>, is the median over the 31 selected slow directions. The random baseline uses the matched random residual directions: mean <span class="math inline">\(0.0206\)</span>, standard deviation <span class="math inline">\(0.0166\)</span>. Thus the slow-direction median is <span class="math inline">\(5.76\)</span> random-control SDs above the random mean.</p>
+<p>This is a descriptive scale calibration, not a p-value. The 31 slow directions were selected by the pipeline and are not IID samples from a null distribution, so the calculation should be read as “large on the random-direction scale,” not as a Gaussian-significance claim.</p>
+<p>The residual-PCA subtraction is useful for controlling residual-stream anisotropy, but it should not be read literally for PCA axes themselves. Top PCA directions have higher raw attention overlap than the slow directions, but median <span class="math inline">\(\tau = 1\)</span>. After subtracting the matched residual-PCA baseline, their median excess attention overlap is <span class="math inline">\(-0.3991\)</span>, about <span class="math inline">\(25\)</span> control SDs below the random mean. This does not mean PCA directions are “anti-attention”; their residual-PCA baseline is mechanically large because they are PCA axes. The point is just that raw attention overlap is not the signal.</p>
+</section>
+<section id="appendix-d-supervised-semantic-audit" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-d-supervised-semantic-audit">Appendix D: Supervised semantic audit</h2>
+<p>This was a separate supervised characterization experiment on the already-frozen slow-31 subspace; it did not refit the slow geometry. I used Gemma-2-2B layer 12 <code>hook_resid_post</code> on 1,200 C4 documents split into 800 fit, 200 validation, and 200 sealed test documents. Each document had context length 1,024, with residuals sampled at 12 token positions from 256 through 960, giving a captured tensor of shape <span class="math inline">\(1200 \times 12 \times 2304\)</span>. Labels were frozen before residual activations were captured. The planned Gemma-2-2B-IT labeler was unavailable, so the labeling model was prospectively switched to pinned Gemma-2-9B-IT before inspecting activations or results; the prompt, ontology, and abstention rule were unchanged.</p>
+<p>The targets were document topic and register. The realized topic ontology was coarse because <code>other_or_unclear</code> accounted for 899 of 1,200 documents. Retaining only classes with at least 30 fit documents left <code>business_and_finance</code>, <code>home_food_and_lifestyle</code>, and <code>other_or_unclear</code>; the sealed topic analysis therefore used 169 of 200 test documents.</p>
+<p>For every sampled activation, I compared the frozen slow-31 coordinates with equal-rank PCA-31 and 20 frozen random rank-31 controls sampled inside a fit-only PCA-256 span. The classifier tested incremental information rather than raw decodability. Its nuisance representation contained token position, token-derived features, and a 32-dimensional PCA compression of local-window mean embeddings. For a candidate subspace <span class="math inline">\(S\)</span>, the semantic gain was</p>
+<p><span class="math display">\[ G_S = CE(\text{nuisance only}) - CE(\text{nuisance}+S), \]</span></p>
+<p>in nats per example. Positive gain means that <span class="math inline">\(S\)</span> improves held-out prediction beyond the local-context baseline. Inference was document-weighted, used 1,000 paired document-bootstrap replicates, and accessed the sealed test set once.</p>
+<section id="sealed-topic-result" class="level3">
+<h3 class="anchored" data-anchor-id="sealed-topic-result">Sealed topic result</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Representation</th>
+<th style="text-align: right;">Cross-entropy gain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Slow-31</td>
+<td style="text-align: right;">0.03337 nats</td>
+</tr>
+<tr class="even">
+<td>PCA-31</td>
+<td style="text-align: right;">0.01733</td>
+</tr>
+<tr class="odd">
+<td>Random-31 median</td>
+<td style="text-align: right;">0.00970</td>
+</tr>
+<tr class="even">
+<td>Random-31 Q95</td>
+<td style="text-align: right;">0.01575</td>
+</tr>
+<tr class="odd">
+<td>Best of 20 random controls</td>
+<td style="text-align: right;">0.01661</td>
+</tr>
+</tbody>
+</table>
+<p>Slow-31 beat all 20 frozen random controls, provided about <span class="math inline">\(1.93\times\)</span> the gain of PCA-31, and exceeded the prespecified 0.01-nat effect-health reference. The paired bootstrap estimates were:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 36%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Quantity</th>
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">95% confidence interval</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(G_{\mathrm{slow}}\)</span></td>
+<td style="text-align: right;">0.03315</td>
+<td style="text-align: right;">[0.01335, 0.05595]</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(G_{\mathrm{slow}}-G_{\mathrm{random,med}}\)</span></td>
+<td style="text-align: right;">0.02377</td>
+<td style="text-align: right;">[0.01270, 0.03628]</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(G_{\mathrm{slow}}-G_{\mathrm{PCA}}\)</span></td>
+<td style="text-align: right;">0.01586</td>
+<td style="text-align: right;">[0.00475, 0.02743]</td>
+</tr>
+</tbody>
+</table>
+<p>All three lower bounds were positive. Register was inconclusive: the raw sealed-test gains were 0.00946 for Slow-31, 0.00637 for PCA-31, and 0.00158 for the random median, but every relevant bootstrap interval crossed zero.</p>
+<p>The topic result was not explained by residual energy. Projected fit energy was approximately 15.4 for Slow-31, 28–33 for the random controls, and 138–139 for PCA-31. Slow-31 therefore predicted topic better while capturing substantially less activation energy. The random controls were rank-matched but were not explicitly energy-matched.</p>
+</section>
+<section id="internal-semantic-geometry" class="level3">
+<h3 class="anchored" data-anchor-id="internal-semantic-geometry">Internal semantic geometry</h3>
+<p>Because topic passed the first gate, I tested how many supervised directions within Slow-31 were needed for the readout. Validation gains at semantic ranks <span class="math inline">\(r \in \{1,2,4,8\}\)</span> were 0.0140, 0.0257, 0.0257, and 0.0257 nats, respectively. Rank 2 was the smallest rank retaining at least 90% of the full slow-space topic gain. Since a three-class multinomial readout has at most two independent class-contrast dimensions, low rank alone is not strong evidence. I therefore fit the rank-2 semantic span independently on two document-disjoint halves and measured mean squared canonical correlation. The observed overlap was 0.4546, versus a median of 0.0644, Q95 of 0.1981, and maximum of 0.2465 across 50 document-label-shuffle refits. None of the shuffled controls reached the observed overlap; the plus-one empirical <span class="math inline">\(p\)</span>-value was approximately 0.0196. Thus the orientation of the two-dimensional topic readout reproduced across independent document splits.</p>
+</section>
+</section>
+<section id="appendix-e-slow-subspace-battery" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-e-slow-subspace-battery">Appendix E: Slow-subspace battery</h2>
+<p>This appendix details the diagnostics behind Finding 4. All quantities are evaluated on held-out validation and test documents using the timescale estimator of Appendix A. The battery operates on saved projection artifacts; it performs no additional model forward pass or probe refit beyond the sampling described here.</p>
+<p><strong>Random-in-span sampling.</strong> Let <span class="math inline">\(Q_{31}\)</span> be the orthonormalized basis of the 31 directions from Finding 1. More generally, for a <span class="math inline">\(k\)</span>-dimensional subspace with orthonormal basis <span class="math inline">\(Q_k\)</span>, I sample coefficients</p>
+<p><span class="math display">\[ z \sim \mathcal{N}(0, I_k) \]</span></p>
+<p>and form</p>
+<p><span class="math display">\[ u = Q_k \frac{z}{\|z\|_2}. \]</span></p>
+<p>This gives a uniformly random unit direction inside the subspace. I then compute the same held-out within-document autocorrelation timescale <span class="math inline">\(\tau\)</span> for each sampled direction.</p>
+<p><strong>Matched controls.</strong> The same procedure is applied to the top-<span class="math inline">\(k\)</span> PCA subspaces for <span class="math inline">\(k \in \{31, 128, 256\}\)</span> and to the full ambient space. The PCA-31 control is the critical matched-dimensional comparator: it tests whether selecting the same number of highest-variance residual axes is enough to recover a generically slow subspace. PCA-128 and PCA-256 test whether random rotations become slow merely by drawing them from progressively broader high-variance residual geometry.</p>
+<p><strong>Subspace-PCA geometry.</strong> Principal-angle and energy statistics between the 31-dimensional slow basis <span class="math inline">\(Q_{31}\)</span> and the top-<span class="math inline">\(k\)</span> PCA subspaces (artifact-only; no rerun). Mean squared containment is the fraction of <span class="math inline">\(Q_{31}\)</span> energy captured by the PCA subspace, <span class="math inline">\(\|P_{\mathrm{PCA},k}Q_{31}\|_F^2 / 31\)</span>; effective overlap is the unnormalized numerator, with units of dimensions.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Comparison</th>
+<th style="text-align: right;">Mean squared containment</th>
+<th style="text-align: right;">Effective overlap <span class="math inline">\(\sum_i\cos^2\theta_i\)</span></th>
+<th style="text-align: right;">Median principal angle</th>
+<th style="text-align: right;">Worst angle</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(Q_{31}\)</span> vs PCA-31</td>
+<td style="text-align: right;">8.99%</td>
+<td style="text-align: right;">2.79 / 31</td>
+<td style="text-align: right;">81.1°</td>
+<td style="text-align: right;">90.0°</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(Q_{31}\)</span> vs PCA-128</td>
+<td style="text-align: right;">28.69%</td>
+<td style="text-align: right;">8.89 / 31</td>
+<td style="text-align: right;">-</td>
+<td style="text-align: right;">-</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(Q_{31}\)</span> vs PCA-256</td>
+<td style="text-align: right;">52.06%</td>
+<td style="text-align: right;">16.14 / 31</td>
+<td style="text-align: right;">44.2°</td>
+<td style="text-align: right;">62.8°</td>
+</tr>
+</tbody>
+</table>
+<p>The 31 directions are also near-orthogonal to each other: median pairwise absolute cosine is <span class="math inline">\(0.035\)</span>, against a random-direction baseline of <span class="math inline">\(\operatorname{sd}(\langle u,v\rangle) = 1/\sqrt{2304} \approx 0.0208\)</span> for independent unit vectors in <span class="math inline">\(\mathbb{R}^{2304}\)</span>, so the observed median is only about 1.7x the random-cosine SD. This is the within-set redundancy check; effective rank is about 28 of 31.</p>
+<p>There is one exact shared direction (PC-1). Removing it, the remaining 30-dimensional slow rotation sits at a median principal angle of 81.6° from PCA axes 2-31. The slow-basis energy is spread broadly across the PCA spectrum:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>PCA band</th>
+<th style="text-align: right;">Fraction of <span class="math inline">\(Q_{31}\)</span> energy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PC 1</td>
+<td style="text-align: right;">3.2%</td>
+</tr>
+<tr class="even">
+<td>PCs 2-31</td>
+<td style="text-align: right;">5.8%</td>
+</tr>
+<tr class="odd">
+<td>PCs 32-64</td>
+<td style="text-align: right;">7.1%</td>
+</tr>
+<tr class="even">
+<td>PCs 65-128</td>
+<td style="text-align: right;">12.6%</td>
+</tr>
+<tr class="odd">
+<td>PCs 129-256</td>
+<td style="text-align: right;">23.4%</td>
+</tr>
+<tr class="even">
+<td>Outside PCA-256</td>
+<td style="text-align: right;">47.9%</td>
+</tr>
+</tbody>
+</table>
+<p>It takes 246 PCA axes to capture 50% of the slow-basis norm, and excluding PC-1 the captured energy is nearly uniform across PCs 2-256. So the slow subspace is not unusually repelled from PCA-31; it is a diffuse rotation across a broad high-variance substrate that the leading PCA frame does not recover. As an exploratory statistic, among the selected source axes slower directions have more energy captured by PCA-256 (Spearman <span class="math inline">\(\approx 0.90\)</span>, even excluding PC-1).</p>
+<p><strong>Classification rule (pre-registered).</strong> The slow subspace is classified “fat” when the median random-in-span <span class="math inline">\(\tau\)</span> exceeds the ambient-random Q90 null. The result is fat: median random-in-span <span class="math inline">\(\tau = 24\)</span> (val), <span class="math inline">\(25\)</span> (test) against an ambient null of <span class="math inline">\(1\)</span>. The stronger “coordinate-free” claim, that essentially every direction in the span is slow, was not certified by this rule, because the locked rule tests only the median. The lower-tail analysis below is the empirical strengthening toward that stronger statement, but it is reported as exploratory rather than as a locked result.</p>
+<p><strong>Nested dimension sweep.</strong> Random-in-span sampling is repeated restricted to the top-<span class="math inline">\(k\)</span> directions for <span class="math inline">\(k \in \{1, 2, 3, 5, 8, 13, 21, 31\}\)</span>. Median <span class="math inline">\(\tau\)</span> declines with <span class="math inline">\(k\)</span> (<span class="math inline">\(492\)</span>, <span class="math inline">\(298\)</span>, <span class="math inline">\(201\)</span>, <span class="math inline">\(116\)</span>, <span class="math inline">\(87\)</span>, <span class="math inline">\(30\)</span>, <span class="math inline">\(27.5\)</span>, <span class="math inline">\(25\)</span> on test). The decline is partly mechanical, since a larger span admits progressively less-slow directions. The two non-mechanical observations are that the floor at <span class="math inline">\(k=31\)</span> (<span class="math inline">\(\tau=25\)</span>) stays far above the null, and that random mixes of only ranks 17 to 31 retain median <span class="math inline">\(\tau = 14\)</span> (val <span class="math inline">\(13\)</span>).</p>
+<p><strong>Participation ratios.</strong> For the 31 directions I report two ratios using the participation-ratio functional <span class="math inline">\((\sum_i x_i)^2 / \sum_i x_i^2\)</span>. Applied to the covariance eigenvalues of the direction set it gives the geometric participation ratio, <span class="math inline">\(28.2\)</span>, confirming near-orthogonality and close-to-full rank. Applied to the timescale-excess values <span class="math inline">\(\Delta\tau_i\)</span> it gives the slowness participation ratio, <span class="math inline">\(4.7\)</span>, quantifying that persistence concentrates into roughly five effective dimensions despite the high geometric rank.</p>
+<p><strong>Lower-tail analysis.</strong> With a 5000-replicate direction bootstrap, the fraction of the 512 random-in-span directions exceeding the ambient Q95 null is <span class="math inline">\(1.0\)</span>, with quantiles q05 = <span class="math inline">\(10\)</span>, q25 = <span class="math inline">\(18\)</span>, q50 = <span class="math inline">\(25\)</span>, q75 = <span class="math inline">\(40\)</span>, q95 = <span class="math inline">\(82\)</span> (test). Matched controls: random PCA-31 has 50% above the null, PCA-128 has 29%, PCA-256 has 15%. The bootstrap characterizes Monte Carlo uncertainty over the already-sampled directions and does not substitute for a fresh prospective split.</p>
+<p><strong>Split stability.</strong> The 31 selected directions have median <span class="math inline">\(\tau\)</span> of <span class="math inline">\(17\)</span> (train), <span class="math inline">\(16\)</span> (val), <span class="math inline">\(17\)</span> (test), with Spearman correlations of <span class="math inline">\(0.99\)</span> across all split pairs and a train-to-test median shrinkage ratio of <span class="math inline">\(1.0\)</span>. The random-in-span endpoint reproduces across val and test with Spearman <span class="math inline">\(0.996\)</span> and median absolute <span class="math inline">\(\tau\)</span> change of 1, with the fraction above the per-split null equal to <span class="math inline">\(1.0\)</span> on both. This rules out the shrinkage regime in which directions are slow on the fit shard and regress to the null on held-out data.</p>
+<p><strong>Disclosure.</strong> The test split had been inspected elsewhere in the workflow before the battery rule was locked, so test results are formally exploratory. Validation is the independent held-out reference and tells the same story.</p>
+</section>
+<section id="appendix-f-why-slowness-is-an-off-diagonal-property" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-f-why-slowness-is-an-off-diagonal-property">Appendix F: Why slowness is an off-diagonal property</h2>
+<p>Write a slow direction in the full PCA basis,</p>
+<p><span class="math display">\[ v = \sum_i a_i u_i, \]</span></p>
+<p>where <span class="math inline">\(u_i\)</span> are the PCA axes and <span class="math inline">\(a_i^2\)</span> is its energy on component <span class="math inline">\(i\)</span>. Its lag-<span class="math inline">\(k\)</span> autocovariance is</p>
+<p><span class="math display">\[ v^\top \Sigma_k v = \sum_i a_i^2\, c_{ii}(k) + \sum_{i \neq j} a_i a_j\, c_{ij}(k), \]</span></p>
+<p>where <span class="math inline">\(c_{ij}(k)\)</span> is the lag-<span class="math inline">\(k\)</span> cross-covariance of PCA components <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>.</p>
+<p>PCA diagonalizes <span class="math inline">\(\Sigma_0\)</span>, so the components are uncorrelated at lag 0. Empirically, the diagonal terms <span class="math inline">\(c_{ii}(k)\)</span> also decay quickly: individual PCA axes are fast. The lagged covariance is not diagonal in the PCA basis, so the off-diagonal terms <span class="math inline">\(c_{ij}(k)\)</span> can matter. The time-lagged objective selects combinations of PCA components whose cross-lag terms reinforce, keeping <span class="math inline">\(v^\top \Sigma_k v\)</span> large out to large <span class="math inline">\(k\)</span> relative to the variance <span class="math inline">\(v^\top \Sigma_0 v\)</span>. Slowness is therefore an off-diagonal property of how components co-vary across lags, not a property of any single PCA component.</p>
+<p>This also explains how PCA-256 and the slow basis can both be effective deletion bases without being the same object. PCA-256 does not contain the slow basis: it captures about half of its energy, while the rest lies outside PCA-256. But the collapse result suggests that the lagged structure needed for persistence depends strongly on this broad high-variance substrate. Projecting out PCA-256 removes enough of the shared components to break the reinforcing cross-lag combinations; projecting out the slow basis removes those combinations more directly.</p>
+<p>Identity is not symmetric. PCA-256 contains no individually slow axis: each PCA axis has <span class="math inline">\(\tau \approx 1\)</span>. The slow basis is the particular orientation in which components combine into long-timescale directions. One is an efficient remover of slowness that is itself fast; the other is slow.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/fodenthal\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Felix Odenthal</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Mechanistic interpretability research</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

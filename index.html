@@ -29,6 +29,11 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./assets/figures/F1_tau_histograms_by_probe_family.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -38,8 +43,20 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-1b5cbb678aba238cc9ecc8dbef59e0a8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-445930127971cf0570f862e9caa14161.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -54,12 +71,13 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed home fullcontent quarto-light">
+<body class="nav-fixed home-page quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -70,6 +88,7 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">Felix Odenthal</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -80,8 +99,24 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./notes.html"> 
-<span class="menu-text">Research</span></a>
+    <a class="nav-link" href="./research/residual-stream-geometry.html"> 
+<span class="menu-text">Residual stream geometry</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./research/appendix.html"> 
+<span class="menu-text">Technical appendix</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/Fodenthal"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:fx.odenthal@gmail.com"> <i class="bi bi-envelope" role="img" aria-label="Email">
+</i> 
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -91,21 +126,22 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Felix Odenthal</h1>
+<p class="subtitle lead">Mechanistic interpretability research</p>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -117,14 +153,52 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>I’m an undergraduate at the University of Chicago working on mechanistic interpretability.</p>
-<section id="featured-work" class="level2">
-<h2 class="anchored" data-anchor-id="featured-work">Featured Work</h2>
-<p><a href="./notes/residual-geometry.html">The Residual Stream Has a Geometry of Time</a></p>
+<div class="hero-grid">
+<section id="residual-streams-have-a-geometry-of-time" class="level2 hero-copy">
+<h2 class="anchored" data-anchor-id="residual-streams-have-a-geometry-of-time">Residual streams have a geometry of time</h2>
+<p>Most directions in a transformer’s residual stream lose predictive structure within one token. A compact 31-dimensional subspace remains correlated across much longer spans.</p>
+<p><a href="./research/residual-stream-geometry.html" class="primary-button">Read the experiment</a> <a href="./research/appendix.html" class="secondary-button">Technical appendix</a></p>
 </section>
-<section id="contact" class="level2">
-<h2 class="anchored" data-anchor-id="contact">Contact</h2>
-<p>Email: <a href="mailto:fx.odenthal@gmail.com">fx.odenthal@gmail.com</a></p>
+<div class="hero-figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/figures/F1_tau_histograms_by_probe_family.png" class="img-fluid figure-img"></p>
+<figcaption>Timescale distributions across probe families</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="main-results" class="level2">
+<h2 class="anchored" data-anchor-id="main-results">Main results</h2>
+<div class="result-grid">
+<section id="directions" class="level3 result-card">
+<h3 class="anchored" data-anchor-id="directions">31 directions</h3>
+<p>carry about 80% of the measured timescale excess while behaving like roughly 28 independent geometric directions.</p>
+</section>
+<section id="tokens" class="level3 result-card">
+<h3 class="anchored" data-anchor-id="tokens">25 tokens</h3>
+<p>is the median timescale of generic directions sampled inside the slow span, compared with 1–1.5 tokens for matched PCA controls.</p>
+</section>
+<section id="nats" class="level3 result-card">
+<h3 class="anchored" data-anchor-id="nats">0.033 nats</h3>
+<p>of held-out topic-prediction gain comes from Slow-31 beyond local nuisance features, beating PCA-31 and all 20 frozen random controls.</p>
+</section>
+</div>
+</section>
+<section id="updated-semantic-audit" class="level2">
+<h2 class="anchored" data-anchor-id="updated-semantic-audit">Updated semantic audit</h2>
+<p>The new supervised analysis treats the slow subspace as frozen and asks whether it adds document-topic information beyond token position, token-derived features, and local-window embeddings. Slow-31 provides about 1.93 times the gain of PCA-31 despite capturing substantially less residual energy. Register remains inconclusive.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="assets/figures/F10_topic_prediction_gain.png" class="img-fluid figure-img" alt="Slow-31 gives a cross-entropy reduction of 0.033 nats, compared with 0.017 for PCA-31 and a random-control median of 0.010."></p>
+<figcaption>Incremental held-out document-topic prediction</figcaption>
+</figure>
+</div>
+<p><a href="./research/appendix.html#appendix-d-supervised-semantic-audit" class="text-link">Read the supervised semantic audit</a></p>
+</section>
+<section id="about" class="level2">
+<h2 class="anchored" data-anchor-id="about">About</h2>
+<p>I am an undergraduate at the University of Chicago working on mechanistic interpretability. You can reach me at <a href="mailto:fx.odenthal@gmail.com">fx.odenthal@gmail.com</a>.</p>
 
 
 </section>
@@ -203,7 +277,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/Fodenthal\.github\.io\/");
+        var filterRegex = new RegExp("https:\/\/fodenthal\.github\.io");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -217,6 +291,11 @@ ul.task-list li input[type="checkbox"] {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -534,18 +613,19 @@ ul.task-list li input[type="checkbox"] {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-      &nbsp;
-    </div>   
+<p>Felix Odenthal</p>
+</div>   
     <div class="nav-footer-center">
-<p>Contact: <a href="mailto:fx.odenthal@gmail.com">fx.odenthal@gmail.com</a></p>
-</div>
-    <div class="nav-footer-right">
       &nbsp;
     </div>
+    <div class="nav-footer-right">
+<p>Mechanistic interpretability research</p>
+</div>
   </div>
 </footer>
 
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
