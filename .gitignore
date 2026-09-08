@@ -2,6 +2,8 @@
 /_freeze/
 /_site/
 /.DS_Store
+__pycache__/
+*.pyc
 *.tmp
 
 **/*.quarto_ipynb
