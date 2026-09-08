@@ -2,25 +2,48 @@ project:
   type: website
   output-dir: _site
   resources:
-    - styles.css
+    - downloads/**
+    - assets/**
   render:
     - index.qmd
-    - notes.qmd
-    - notes/residual-geometry.qmd
+    - research/residual-stream-geometry.qmd
+    - research/appendix.qmd
 
 website:
   title: "Felix Odenthal"
-  description: "Mechanistic interpretability research notes"
-  search: false
+  site-url: "https://fodenthal.github.io"
+  description: "Mechanistic interpretability research by Felix Odenthal"
+  favicon: assets/figures/F1_tau_histograms_by_probe_family.png
   navbar:
+    background: "#fbfaf7"
+    foreground: "#17212b"
     left:
       - href: index.qmd
         text: Home
-      - href: notes.qmd
-        text: Research
+      - href: research/residual-stream-geometry.qmd
+        text: Residual stream geometry
+      - href: research/appendix.qmd
+        text: Technical appendix
+    right:
+      - icon: github
+        href: https://github.com/Fodenthal
+        aria-label: GitHub
+      - icon: envelope
+        href: mailto:fx.odenthal@gmail.com
+        aria-label: Email
+  page-footer:
+    left: "Felix Odenthal"
+    right: "Mechanistic interpretability research"
 
 format:
   html:
-    theme: litera
+    theme: cosmo
     css: styles.css
     toc: true
+    smooth-scroll: true
+    anchor-sections: true
+    link-external-newwindow: true
+    html-math-method: mathjax
+
+execute:
+  freeze: auto

@@ -1,17 +1,7 @@
-# Quarto outputs
-_site/
-.quarto/
-
-# OS
-.DS_Store
-
-# Notebook and language caches
-__pycache__/
-.ipynb_checkpoints/
-
-# RStudio
-.Rproj.user/
+/.quarto/
+/_freeze/
+/_site/
+/.DS_Store
+*.tmp
 
 **/*.quarto_ipynb
-
-/.quarto/

@@ -1,7 +1,0 @@
----
-title: "Research"
----
-
-Current research writeups.
-
-- [The Residual Stream Has a Geometry of Time](notes/residual-geometry.qmd)

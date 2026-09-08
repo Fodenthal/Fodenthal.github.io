@@ -1,27 +1,55 @@
 ---
 title: "Felix Odenthal"
 subtitle: "Mechanistic interpretability research"
+toc: false
+page-layout: full
+body-classes: home-page
 ---
 
-I'm an undergraduate at the University of Chicago working on mechanistic interpretability.
+::: {.hero-grid}
+::: {.hero-copy}
+## Residual streams have a geometry of time
 
-## Featured Work
+Most directions in a transformer's residual stream lose predictive structure within one token. A compact 31-dimensional subspace remains correlated across much longer spans.
 
-### [The Residual Stream Has a Geometry of Time](notes/residual-geometry.qmd)
+[Read the experiment](research/residual-stream-geometry.qmd){.primary-button} [Technical appendix](research/appendix.qmd){.secondary-button}
+:::
 
-In a pilot study on Gemma-2-2B, I found a compact set of residual-stream directions with long autocorrelation lifetimes. The surprising part is geometric: these persistent directions live inside the high-variance PCA span, but not on the PCA axes themselves.
+::: {.hero-figure}
+![Timescale distributions across probe families](assets/figures/F1_tau_histograms_by_probe_family.png)
+:::
+:::
 
-This post is the best entry point to the project. It includes the experimental setup, figures, evidence boundaries, and open questions.
+## Main results
 
-[Read the post](notes/residual-geometry.qmd)
+::: {.result-grid}
+::: {.result-card}
+### 31 directions
 
-## Research Interests
+carry about 80% of the measured timescale excess while behaving like roughly 28 independent geometric directions.
+:::
 
-- Mechanistic interpretability of transformer residual streams
-- Persistent state, context tracking, and long-timescale representations
-- Geometry of representation spaces: PCA, subspaces, and sparse features
-- Causal tests that connect geometric structure to model behavior
+::: {.result-card}
+### 25 tokens
 
-## Contact
+is the median timescale of generic directions sampled inside the slow span, compared with 1–1.5 tokens for matched PCA controls.
+:::
 
-If you're interested in the residual-geometry project or related mechanistic interpretability work, the best starting point is the post above.
+::: {.result-card}
+### 0.033 nats
+
+of held-out topic-prediction gain comes from Slow-31 beyond local nuisance features, beating PCA-31 and all 20 frozen random controls.
+:::
+:::
+
+## Updated semantic audit
+
+The new supervised analysis treats the slow subspace as frozen and asks whether it adds document-topic information beyond token position, token-derived features, and local-window embeddings. Slow-31 provides about 1.93 times the gain of PCA-31 despite capturing substantially less residual energy. Register remains inconclusive.
+
+![Incremental held-out document-topic prediction](assets/figures/F10_topic_prediction_gain.png){fig-alt="Slow-31 gives a cross-entropy reduction of 0.033 nats, compared with 0.017 for PCA-31 and a random-control median of 0.010."}
+
+[Read the supervised semantic audit](research/appendix.qmd#appendix-d-supervised-semantic-audit){.text-link}
+
+## About
+
+I am an undergraduate at the University of Chicago working on mechanistic interpretability. You can reach me at [fx.odenthal@gmail.com](mailto:fx.odenthal@gmail.com).

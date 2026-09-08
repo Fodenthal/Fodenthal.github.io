@@ -1,31 +1,15 @@
-# Felix Odenthal Research Notes
+# Fodenthal.github.io
 
-This is a simple Quarto website scaffold for mechanistic interpretability research notes, project pages, and future writeups.
+Personal research site for Felix Odenthal, built with Quarto and published with GitHub Pages.
 
-## Preview Locally
-
-Run:
-
-```bash
-quarto preview
-```
-
-## Render
-
-Run:
+## Build locally
 
 ```bash
 quarto render
 ```
 
-Rendered output is written to `_site/`, which is ignored by git.
-
 ## Publish
 
-Run:
-
 ```bash
-quarto publish gh-pages
+quarto publish gh-pages --no-prompt
 ```
-
-After publishing, GitHub Pages can serve the site from the `gh-pages` branch.
